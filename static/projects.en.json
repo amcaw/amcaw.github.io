@@ -1,0 +1,601 @@
+[
+  {
+    "slug": "warmaps-ukraine",
+    "title": "Daily tracking of the war in Ukraine in maps",
+    "type": "Interactive map",
+    "cats": [
+      "Cartes",
+      "Interactif"
+    ],
+    "featured": true,
+    "url": "https://www.rtbf.be/article/guerre-en-ukraine-ou-en-est-la-ligne-de-front-aujourd-hui-carte-interactive-mise-a-jour-au-quotidien-11710636",
+    "image": "/images/warmaps-2.jpg",
+    "image2": "/images/warmaps.jpg",
+    "caption": "The map of territorial control in Ukraine (left). The same tool powered a Middle East version (right), built on the same technical foundation and the same ISW data.",
+    "date": "16 April 2026 (updated daily)",
+    "desc": "Where does the front line stand in Ukraine? An interactive map updated every day.",
+    "lede": "A map of territorial control in Ukraine, updated automatically every day. The daily assessments from the Institute for the Study of War, received as email attachments, are unzipped, converted to a geographic format and then placed automatically on the map (with no manual intervention), keeping the front line continuously up to date.",
+    "role": "Concept, data, development",
+    "stack": "SvelteKit · MapLibre · GitHub Actions",
+    "data": "ISW (Gmail ingestion)",
+    "related": "",
+    "makingof": {
+      "intro": "The challenge: publish a reliable map of the front every day without touching it by hand. The source (the Institute for the Study of War's shapefiles) arrives by email, in a raw GIS format. Everything else is automated, from the email to the pixel.",
+      "steps": [
+        {
+          "t": "Received by email",
+          "d": "A Google Apps Script triggered each day queries Gmail, locates the latest ISW email (the most recent by subject date, never an outdated version) and extracts its .zip attachments."
+        },
+        {
+          "t": "Normalisation & commit",
+          "d": "Each archive is unzipped, renamed to a stable layer identifier, then pushed to GitHub via the Git API (blobs + tree + commit). Missing layers are deleted so that obsolete data is never displayed."
+        },
+        {
+          "t": "GIS → web conversion",
+          "d": "A GitHub Actions workflow converts the shapefiles to GeoJSON with shpjs, reprojects from EPSG:3857 to EPSG:4326 and rounds the coordinates to lighten the files."
+        },
+        {
+          "t": "Map rendering",
+          "d": "The SvelteKit app draws the polygons (territorial control, advances, counter-offensives) with MapLibre GL, using a palette and labels designed for editorial reading."
+        },
+        {
+          "t": "Build & deployment",
+          "d": "The same workflow rebuilds the site and deploys it to GitHub Pages. The RTBF article embeds it via pym.js (responsive iframe). Zero human intervention between the email and the published map."
+        }
+      ],
+      "stack": [
+        "Google Apps Script",
+        "GitHub Actions",
+        "shpjs",
+        "SvelteKit",
+        "MapLibre GL",
+        "pym.js"
+      ]
+    },
+    "thumb": "/images/warmaps-2-thumb.jpg"
+  },
+  {
+    "slug": "reddeviz",
+    "title": "RedDeviz: the data of more than 1,000 football matches geolocated",
+    "type": "Data visualisation",
+    "cats": [
+      "Data viz",
+      "Interactif"
+    ],
+    "featured": true,
+    "url": "https://www.rtbf.be/article/de-1904-a-nos-jours-les-diables-rouges-sur-une-carte-du-monde-infographie-interactive-11736279",
+    "image": "/images/reddeviz.jpg",
+    "image2": "",
+    "caption": "The globe brings together more than 860 matches of the Belgian national teams; the filters isolate competitions, results and notable streaks.",
+    "date": "6 June 2026",
+    "desc": "A cartochronology of every match of the Red Devils and the Red Flames.",
+    "lede": "Every match of the Belgian national teams, placed back in time and space. Hover or click to explore opponents, venues and results across the decades.",
+    "role": "Concept, data, development",
+    "stack": "Svelte · D3 · d3-geo · TopoJSON",
+    "data": "History of national team matches",
+    "related": "",
+    "makingof": {
+      "intro": "More than a century of matches from the two Belgian national teams, brought together on a single globe. The idea for the visualisation did not come from nowhere: it adapts an existing format, applied this time to the Belgian sides, using official data from the Royal Belgian Football Association (RBFA).",
+      "steps": [
+        {
+          "t": "Origins & inspiration",
+          "d": "The principle of chronological cartography (a globe where each match is placed in time and space) is directly inspired by the work of <a href=\"https://www.chroniquesbleues.fr/cartographie-chronologique-des-matchs-des-Bleus\" target=\"_blank\" rel=\"noreferrer\">Chroniques Bleues</a> on the French national team, spotted via <a href=\"https://www.linkedin.com/posts/danielbreton_bleus-football-fff-ugcPost-7467863100411674624--hIG/\" target=\"_blank\" rel=\"noreferrer\">Daniel Breton</a> (Visual Data Flow). RedDeviz is a reinterpretation of it for the Red Devils and the Red Flames."
+        },
+        {
+          "t": "Official source",
+          "d": "The matches of the Red Devils and the Red Flames come from the official RBFA data (opponents, dates, venues, results), across the entire history of the national teams."
+        },
+        {
+          "t": "Automatic geocoding",
+          "d": "Each host city is converted into coordinates via Nominatim (OpenStreetMap). No coordinate is typed in by hand: a cache avoids re-geocoding, and ambiguous places are corrected via a disambiguation table."
+        },
+        {
+          "t": "Neutral ground & edge cases",
+          "d": "The host country is inferred from the geocoded city, which correctly places matches on neutral ground (Olympics, World Cup, Women's Euro). When the city is missing or unreadable, the marker falls back to the country's capital and is flagged as approximate (never presented as exact)."
+        },
+        {
+          "t": "Data processing & build",
+          "d": "Node.js scripts consolidate everything into compact JSON files (matches + details), with stadium names in French when they exist, ready to be consumed by the app."
+        },
+        {
+          "t": "Rendering & integration",
+          "d": "The SvelteKit app projects the matches onto a globe with D3 / d3-geo (TopoJSON basemaps), with filters by competition, result and notable streaks. It embeds into RTBF articles via pym.js."
+        }
+      ],
+      "stack": [
+        "RBFA (official data)",
+        "Nominatim / OSM",
+        "Node.js",
+        "SvelteKit",
+        "D3 · d3-geo",
+        "TopoJSON",
+        "pym.js"
+      ]
+    },
+    "thumb": "/images/reddeviz-thumb.jpg"
+  },
+  {
+    "slug": "svelte-gas-price",
+    "title": "Fuel prices",
+    "type": "Interactive widget",
+    "cats": [
+      "Data viz",
+      "Interactif"
+    ],
+    "featured": false,
+    "url": "https://www.rtbf.be/article/faut-il-attendre-demain-pour-faire-le-plein-suivez-les-prix-des-carburants-avec-notre-outil-interactif-11698964",
+    "image": "/images/svelte-gas-price-2.jpg",
+    "image2": "/images/svelte-gas-price.jpg",
+    "caption": "The ranking of the best prices by province and the fill-up calculator, two embedded widgets updated automatically.",
+    "date": "24 March 2026 (updated daily)",
+    "desc": "Embeddable widgets on fuel prices in Belgium, refreshed several times a day.",
+    "lede": "Designed against the backdrop of the rise in fuel prices that followed the start of the US and Israeli offensive against Iran. How much does a tank of fuel cost today compared with a past date, and where can you find the best prices by province? Two widgets embeddable in articles on the RTBF Actus site, fed automatically via GitHub Actions.",
+    "role": "Development & data",
+    "stack": "Svelte 5 · D3 · pym.js · GitHub Actions",
+    "data": "SPF Économie · Statbel · carbu.com",
+    "related": "",
+    "makingof": {
+      "intro": "Two widgets designed to answer, with the figures to back it up, a very concrete question: should you fill up today or wait until tomorrow? All of it updated on its own, several times a day, and ready to be dropped into an article.",
+      "steps": [
+        {
+          "t": "Official sources",
+          "d": "The day's rates come from SPF Économie, the history from Statbel (be.STAT, open licence) and the best prices at the pump from carbu.com (with permission), by province and by fuel type."
+        },
+        {
+          "t": "Automatic updates",
+          "d": "GitHub Actions workflows scheduled several times a day refresh the data and write compact JSON files, published directly to GitHub Pages without rebuilding the site."
+        },
+        {
+          "t": "Data continuity",
+          "d": "The pipeline handles the pitfalls of public data: for example the change in heating oil nomenclature (H0/H7 since April 2024) is reconciled with the old label to keep a continuous history."
+        },
+        {
+          "t": "Two widgets, one foundation",
+          "d": "A calculator (cost of a tank today versus a past date) and a ranking of the best prices by province share the same Svelte foundation, with a carefully crafted palette and labels."
+        },
+        {
+          "t": "Editorial integration",
+          "d": "Each widget embeds into articles on the RTBF Actus site via pym.js (responsive iframe that adapts to the height of the content)."
+        }
+      ],
+      "stack": [
+        "SPF Économie",
+        "Statbel",
+        "carbu.com",
+        "GitHub Actions",
+        "Svelte 5",
+        "D3",
+        "pym.js"
+      ]
+    },
+    "thumb": "/images/svelte-gas-price-2-thumb.jpg"
+  },
+  {
+    "slug": "20km-recap",
+    "title": "20 km of Brussels: your recap",
+    "type": "Data visualisation",
+    "cats": [
+      "Data viz",
+      "Interactif"
+    ],
+    "featured": false,
+    "url": "https://www.rtbf.be/article/votre-recap-perso-des-20-km-de-bruxelles-ou-vous-situez-vous-par-rapport-aux-autres-participants-11733095",
+    "image": "/images/20km2026.jpg",
+    "image2": "",
+    "caption": "Type a name or a bib number to place a performance within the distribution of all runners.",
+    "date": "1 June 2026",
+    "desc": "Your personal recap of the 20 km of Brussels: where do you stand compared with the other participants?",
+    "lede": "Tens of thousands of runners, one course, a wealth of times. This multilingual tool lets you place a performance within the full field of participants.",
+    "role": "Development & data",
+    "stack": "Svelte · D3",
+    "data": "Official results of the 20 km of Brussels",
+    "related": "",
+    "makingof": {
+      "intro": "Tens of thousands of runners, and one promise: let everyone find their place in the race in a few seconds. All the work consists of turning a long list of times into a personal, readable narrative.",
+      "steps": [
+        {
+          "t": "From raw results to distributions",
+          "d": "Starting from the official race results, Node.js scripts compute the distributions by category (medians, quantiles, histograms) as well as the intermediate split times (5.5 km, 10 km, 15 km, finish)."
+        },
+        {
+          "t": "Finding your place in the crowd",
+          "d": "These distributions answer the runner's real question: where do I rank? A time (or a bib number) is compared with the whole field of participants, by sex and by age category."
+        },
+        {
+          "t": "Every profile",
+          "d": "Para-athletics, classified separately, is handled in its own dataset so it is not lost in the general ranking."
+        },
+        {
+          "t": "Rendering & multilingual",
+          "d": "The SvelteKit app turns everything into charts with D3 (scales, interpolations), in an interface available in several languages (in keeping with a Brussels audience)."
+        },
+        {
+          "t": "Distribution",
+          "d": "The site is generated as static and deployed to GitHub Pages, ready to be shared and embedded in RTBF content."
+        }
+      ],
+      "stack": [
+        "Official results",
+        "Node.js",
+        "D3 (scale · array · interpolate)",
+        "SvelteKit",
+        "i18n"
+      ]
+    },
+    "thumb": "/images/20km2026-thumb.jpg"
+  },
+  {
+    "slug": "20km-zones",
+    "title": "20 km of Brussels: the tough zones",
+    "type": "Scrollytelling",
+    "cats": [
+      "Data viz",
+      "Interactif",
+      "Scrollytelling"
+    ],
+    "featured": false,
+    "url": "https://www.rtbf.be/article/20-km-de-bruxelles-voici-les-zones-les-plus-difficiles-du-parcours-selon-votre-profil-11727027",
+    "image": "/images/rtbf-20km.jpg",
+    "image2": "",
+    "caption": "The narrative links the course profile to the observed slowdowns, kilometre by kilometre, according to your runner profile.",
+    "date": "21 May 2026",
+    "desc": "The toughest zones of the 20 km of Brussels course, according to your profile.",
+    "lede": "A scrolling narrative that turns the split times of thousands of runners into a reading of the course: the climbs, the fatigue points and the places where the crowd slows down, kilometre by kilometre.",
+    "role": "Concept, data, web development",
+    "stack": "SvelteKit · D3",
+    "data": "Official split times of the 20 km of Brussels",
+    "related": "",
+    "makingof": {
+      "intro": "A personalised scrollytelling: the reader enters their sex, age and target time, then runs down the course, suffering zone by suffering zone. The editorial question is simple: where does your group really slow down?",
+      "steps": [
+        {
+          "t": "From GPS traces to cohorts",
+          "d": "The starting point is thousands of runners' GPS traces. They are grouped into cohorts (five finish-time levels × two sexes), so we can reason about comparable groups rather than individuals."
+        },
+        {
+          "t": "Detecting the suffering zones",
+          "d": "For each cohort, a smoothed pace curve is computed along the course. A suffering zone is detected automatically where the pace markedly exceeds the cohort average (at least 10 s/km over 400 m or more). Each group therefore has its own zones, and the length of the narrative adapts."
+        },
+        {
+          "t": "Pace × elevation",
+          "d": "Each zone is cross-referenced with the course elevation profile (uphill, flat, downhill) and accompanied by a signed pace gap relative to the group's race average, plus a targeted coaching comment."
+        },
+        {
+          "t": "The right granularity for everyone",
+          "d": "The figures displayed respect the reader's age cell when it is well populated, and cleanly fall back to a broader granularity otherwise. A badge always indicates which sample the answer is based on."
+        },
+        {
+          "t": "Rendering & scrollytelling",
+          "d": "All of it is rendered in SvelteKit with D3: elevation bands, progress overlays and pace charts, orchestrated by scrolling for a guided reading."
+        }
+      ],
+      "stack": [
+        "Runners' GPS traces",
+        "Node.js",
+        "D3",
+        "SvelteKit",
+        "scrollytelling"
+      ]
+    },
+    "thumb": "/images/rtbf-20km-thumb.jpg"
+  },
+  {
+    "slug": "orthophotos-wallonie",
+    "title": "Orthophotos of Wallonia",
+    "type": "Interactive map",
+    "cats": [
+      "Cartes",
+      "Interactif"
+    ],
+    "featured": false,
+    "url": "https://amcaw.github.io/orthophotoswallonie/lens/",
+    "image": "/images/orthophotoswallonie.jpg",
+    "image2": "/images/orthophotoswallonie-2.jpg",
+    "caption": "The lens mode overlays 1971 and 2024: on the left Wallonia, on the right the same comparison over Brussels.",
+    "date": "2026",
+    "desc": "A comparator of aerial imagery of Wallonia and Brussels, from 1971 to today.",
+    "lede": "How have a neighbourhood, an industrial zone or a forest changed over fifty years? Three modes (lens, before/after and time travel) let you scroll through the orthophotos decade after decade.",
+    "role": "Concept & development",
+    "stack": "SvelteKit · MapLibre",
+    "data": "Official Wallonia & Brussels orthophotos (WMTS)",
+    "related": "",
+    "makingof": {
+      "intro": "Fifty years of aerial photographs overlaid on a single map, to watch a territory change. The challenge: make a mass of official imagery as simple to explore as a slider you drag.",
+      "steps": [
+        {
+          "t": "Official imagery",
+          "d": "The basemaps come from the Walloon Region's geoservices: one layer per orthophoto vintage, from 1971 to 2023, supplemented with historical maps (Ferraris 1770, Vandermaelen 1850). A variant also covers Brussels."
+        },
+        {
+          "t": "Three ways to compare",
+          "d": "A lens mode (which reveals another year under a disc), a before/after mode through time and an animated timelapse mode: three entry points for the same question, how has this place evolved?"
+        },
+        {
+          "t": "Go straight to your neighbourhood",
+          "d": "An address search field (geocoder) instantly recentres the map on the place the reader cares about, rather than leaving them to navigate by hand."
+        },
+        {
+          "t": "Map rendering",
+          "d": "The SvelteKit app relies on MapLibre GL to display and synchronise the layers, with a year selector, a welcome tutorial and share buttons."
+        },
+        {
+          "t": "Editorial integration",
+          "d": "All of it embeds into articles via pym.js (responsive iframe that adjusts to the height of the content)."
+        }
+      ],
+      "stack": [
+        "Wallonia geoservices",
+        "MapLibre GL",
+        "MapLibre Geocoder",
+        "SvelteKit",
+        "pym.js"
+      ]
+    },
+    "thumb": "/images/orthophotoswallonie-thumb.jpg"
+  },
+  {
+    "slug": "detroit-ormuz",
+    "title": "Strait of Hormuz: the Iranian stranglehold",
+    "type": "Interactive map",
+    "cats": [
+      "Cartes",
+      "Interactif",
+      "Scrollytelling"
+    ],
+    "featured": false,
+    "url": "https://www.rtbf.be/article/detroit-d-ormuz-comment-l-iran-serre-et-desserre-l-etau-11700219",
+    "image": "/images/detroit-ormuz.jpg",
+    "image2": "/images/detroit-ormuz-2.jpg",
+    "caption": "The narrative follows the cargo ship Giacometti in near real time thanks to its AIS signal, as it approaches and then reaches the heart of the Persian Gulf.",
+    "date": "26 March 2026",
+    "desc": "How Iran tightens, and loosens, its grip on one of the most strategic shipping passages in the world.",
+    "lede": "By following the cargo ship Giacometti through the strait, this long read shows, AIS signals in hand, how Iranian tensions block nearly 2,000 ships and reshape global traffic.",
+    "role": "Web development, data",
+    "stack": "SvelteKit · MapLibre · Sentinel",
+    "data": "Global Fishing Watch (AIS signals)",
+    "related": "",
+    "makingof": {
+      "intro": "A scrollytelling that follows a cargo ship, the Giacometti, to tell how Iran opens and closes one of the most strategic shipping passages in the world. The challenge: make a complex maritime situation readable, step by step.",
+      "steps": [
+        {
+          "t": "Following a ship",
+          "d": "The narrative latches onto the trajectory of a real cargo ship through the strait, reconstructed from its near-real-time position. Source of ship data: Global Fishing Watch."
+        },
+        {
+          "t": "Reading maritime traffic",
+          "d": "Beyond a single ship, the article highlights the congestion of the strait and the alternative routes taken when Iran tightens its grip."
+        },
+        {
+          "t": "Annotated satellite imagery",
+          "d": "The Sentinel-1 radar images (SAR, which sees by day as by night and through clouds) are retrieved and assembled via Python scripts on the Copernicus Data Space, then annotated by hand to point out ship groupings, circles and labels placed to the pixel."
+        },
+        {
+          "t": "Sectioned narrative",
+          "d": "The story is broken into sections that follow one another as you scroll (the ship, the \"non-hostile ships\", the blocked vessels), each with its own map and charts in D3."
+        },
+        {
+          "t": "On a reusable foundation",
+          "d": "All of it is built on an in-house article template (title, intro, map, annotated image, callouts, share components), which makes it possible to put together a polished, consistent long read quickly from one topic to the next."
+        }
+      ],
+      "stack": [
+        "Global Fishing Watch",
+        "Python",
+        "Sentinel-1 / Copernicus",
+        "MapLibre GL",
+        "D3",
+        "SvelteKit",
+        "In-house article template"
+      ]
+    },
+    "thumb": "/images/detroit-ormuz-thumb.jpg"
+  },
+  {
+    "slug": "south-liban",
+    "title": "Southern Lebanon wiped off the map",
+    "type": "Interactive map",
+    "cats": [
+      "Cartes",
+      "Scrollytelling"
+    ],
+    "featured": false,
+    "url": "https://www.rtbf.be/article/le-sud-liban-raye-de-la-carte-israel-rase-des-villages-au-bulldozer-et-a-l-explosif-la-preuve-en-images-11716451",
+    "image": "/images/south-liban-2.jpg",
+    "image2": "/images/south-liban.jpg",
+    "caption": "Geolocated drone videos document the destruction village by village; the map records the strikes around Beirut.",
+    "date": "19 April 2026",
+    "desc": "Israel is razing villages in southern Lebanon with bulldozers and explosives: the proof in images.",
+    "lede": "Satellite images and geolocated drone videos document, village by village, the destruction of a buffer zone along the Israeli border.",
+    "role": "Web development, data",
+    "stack": "SvelteKit · MapLibre · satellite imagery",
+    "data": "IDF · Reuters · ISW · CNRS · Oregon State University",
+    "related": "",
+    "makingof": {
+      "intro": "Documenting, with proof in hand, the destruction of villages in southern Lebanon along the Israeli border. The whole challenge is to verify and geolocate what was destroyed, village by village.",
+      "steps": [
+        {
+          "t": "Satellite imagery (Python + Sentinel)",
+          "d": "Python scripts query the Copernicus Data Space to retrieve Sentinel imagery: true colour (Sentinel-2) and radar (Sentinel-1, SAR). A radar backscatter change detection brings out the buildings that disappeared between two dates."
+        },
+        {
+          "t": "Verify and geolocate",
+          "d": "Drone videos and images are cross-checked and precisely placed back on the ground, and corroborated with satellite-imagery damage assessments such as those from <a href=\"https://damage.conflict-ecology.org/\" target=\"_blank\" rel=\"noreferrer\">Oregon State University</a>, to document the destruction in the region."
+        },
+        {
+          "t": "Mapping the strikes",
+          "d": "A MapLibre map overlays the layers of geolocated strikes (more than a thousand dated events) and the buffer zone, to give the scale and geography of the phenomenon."
+        },
+        {
+          "t": "Narrative & distribution",
+          "d": "The article is built on an in-house template (map, annotated images, callouts, grids) and deployed as static, ready to be embedded in RTBF content."
+        }
+      ],
+      "stack": [
+        "Python",
+        "Sentinel-1 / Sentinel-2 (Copernicus)",
+        "MapLibre GL",
+        "SvelteKit",
+        "In-house article template"
+      ],
+      "credits": "Sources: IDF, Reuters, ISW, CNRS (Lebanon), Oregon State University."
+    },
+    "thumb": "/images/south-liban-2-thumb.jpg"
+  },
+  {
+    "slug": "minnesota",
+    "title": "Renee Good, killed by an ICE agent",
+    "type": "Video reconstruction",
+    "cats": [
+      "Interactif",
+      "Scrollytelling"
+    ],
+    "featured": false,
+    "url": "https://www.rtbf.be/article/renee-good-tuee-au-minnesota-par-un-agent-de-l-ice-voici-ce-que-disent-les-images-seconde-par-seconde-11662666",
+    "image": "/images/rtbf-minnesota.jpg",
+    "image2": "/images/rtbf-minnesota-2.jpg",
+    "caption": "Surveillance and body-cam videos synchronised on the location, Portland Avenue, to reconstruct the scene second by second.",
+    "date": "23 January 2026",
+    "desc": "What the footage of Renee Good's death in Minnesota tells us, second by second.",
+    "lede": "Body-cam, witness videos and satellite imagery are synchronised and cross-referenced frame by frame in order to reconstruct the scene as precisely as possible and to confront the different accounts.",
+    "role": "Web development",
+    "stack": "SvelteKit · video synchronisation",
+    "data": "CNN · AFP · Reuters · DHS · metadata analysis",
+    "related": "",
+    "makingof": {
+      "intro": "Reconstructing, second by second, the death of Renee Good, killed by an ICE agent in Minnesota. The goal: to confront the visual sources to offer the most precise possible reconstruction of the scene, without ruling in place of the investigation.",
+      "steps": [
+        {
+          "t": "OSINT investigation",
+          "d": "The work relies on open source intelligence (OSINT) techniques: collecting and verifying surveillance, body-cam and witness videos, cross-referenced with satellite imagery of the location."
+        },
+        {
+          "t": "Synchronising the sources",
+          "d": "The different videos are aligned to a single clock from visual cues and timestamp badges, to follow the sequence of events to the second."
+        },
+        {
+          "t": "From spreadsheet to narrative",
+          "d": "The sequence is driven by a spreadsheet (steps, texts, media, timestamps) converted to JSON by a Python script, then the videos are optimised for the web."
+        },
+        {
+          "t": "Mapped scrollytelling",
+          "d": "The scrolling narrative combines a satellite view (MapLibre) of the location and the video sequences, so the reader can place each moment in space as well as in time."
+        }
+      ],
+      "stack": [
+        "OSINT",
+        "Python (pandas)",
+        "MapLibre GL",
+        "SvelteKit",
+        "scrollytelling"
+      ]
+    },
+    "thumb": "/images/rtbf-minnesota-thumb.jpg"
+  },
+  {
+    "slug": "constellation",
+    "title": "The Constellation fire in 3D",
+    "type": "3D reconstruction",
+    "cats": [
+      "Interactif",
+      "Scrollytelling"
+    ],
+    "featured": false,
+    "url": "https://www.rtbf.be/article/une-renovation-artisanale-devenue-un-piege-mortel-l-incendie-du-constellation-a-crans-montana-explique-en-3d-11662616",
+    "image": "/images/rtbf-constellation.jpg",
+    "image2": "/images/rtbf-constellation-2.jpg",
+    "caption": "The 3D model of the bar reconstructs how the fire unfolded; videos from the night are matched against the model.",
+    "date": "16 January 2026",
+    "desc": "An amateur renovation turned deadly trap: the Constellation fire explained in 3D.",
+    "lede": "On New Year's night 2026, a bar in Crans-Montana goes up in flames in a matter of seconds. A 3D model of the premises reconstructs the key moments of the evening and the deadly trap the venue became.",
+    "role": "Web development",
+    "stack": "SvelteKit · 3D model",
+    "data": "3D model: RTS · reporting Décrypte",
+    "related": "",
+    "makingof": {
+      "intro": "Reconstructing in 3D an evening that turned to tragedy: the fire at the bar Le Constellation, in Crans-Montana, on New Year's night. The challenge is to understand, space by space, how a festive venue became a deadly trap.",
+      "steps": [
+        {
+          "t": "OSINT investigation",
+          "d": "The circumstances of the fire are retraced through open source intelligence (OSINT) techniques: cross-referencing public videos, photos and testimonies to establish the chronology and the real layout of the premises."
+        },
+        {
+          "t": "Modelling the premises",
+          "d": "The bar and its accesses (room, basement, stairs, doors, terraces) are rebuilt as distinct 3D models, faithful to the configuration on the night of the events."
+        },
+        {
+          "t": "Real-time 3D rendering",
+          "d": "The models are displayed and lit in the browser with Three.js, which makes it possible to navigate the space and highlight the seat of the fire and the exits."
+        },
+        {
+          "t": "Guided narrative",
+          "d": "The scrollytelling links the 3D viewpoints along with the text, matches the model against the real images from the evening and reveals, step by step, why the exits became traps."
+        }
+      ],
+      "stack": [
+        "OSINT",
+        "3D modelling",
+        "Three.js",
+        "D3",
+        "SvelteKit"
+      ],
+      "credits": "3D model: RTS. Reporting and analysis: Décrypte (RTBF)."
+    },
+    "thumb": "/images/rtbf-constellation-thumb.jpg"
+  },
+  {
+    "slug": "musk-mfp",
+    "title": "When Musk amplifies the far right",
+    "type": "Analysis",
+    "cats": [
+      "Scrollytelling"
+    ],
+    "featured": false,
+    "url": "https://www.rtbf.be/article/comment-elon-musk-utilise-son-reseau-x-pour-faire-monter-l-extreme-droite-en-europe-11540235",
+    "image": "/images/rtbf-muskmfp.jpg",
+    "image2": "/images/rtbf-muskmfp-2.jpg",
+    "caption": "The timeline of posts relayed by Elon Musk brings out the spikes in activity, illustrated by the tweets concerned.",
+    "date": "30 April 2025",
+    "desc": "How Elon Musk uses his network X to boost the far right in Europe.",
+    "lede": "An analysis of the posts relayed on X by Elon Musk: what the amplification network around his account reveals and the virality mechanics at work in the rise of the European far right.",
+    "role": "Web development, analysis",
+    "stack": "SvelteKit · network analysis",
+    "data": "Public posts on X (Twitter)",
+    "related": "",
+    "makingof": {
+      "intro": "An investigation into how Elon Musk uses his network X to amplify the far right in Europe, told as scrollytelling. The challenge: to make visible, post by post, virality mechanics that are hard to grasp with the naked eye.",
+      "steps": [
+        {
+          "t": "Building the corpus",
+          "d": "The starting point: five months of Elon Musk's X posts, from the election of Donald Trump. The corpus is gathered then cleaned to allow a chronological, quantified reading."
+        },
+        {
+          "t": "AI-assisted classification",
+          "d": "Each post is classified by topic using artificial intelligence, then the AI's results are systematically verified by the journalists before publication."
+        },
+        {
+          "t": "Lightweight data for the web",
+          "d": "The dataset is converted from CSV to the Parquet format (via Apache Arrow), which sharply reduces the weight loaded by the browser and smooths the scrolling, even with large volumes."
+        },
+        {
+          "t": "Making the amplification visible",
+          "d": "The narrative alternates between a phone mockup showing the real posts and a data timeline: each spike in activity becomes readable, animated in D3 (with shape morphing via flubber)."
+        },
+        {
+          "t": "Scrollytelling",
+          "d": "The sections follow one another as you scroll, with image preloading and loading-state handling for a seamless reading."
+        }
+      ],
+      "stack": [
+        "X data",
+        "AI (classification)",
+        "CSV → Parquet (Apache Arrow)",
+        "D3",
+        "flubber",
+        "Svelte"
+      ],
+      "award": "Journalism Prize of the Parliament of the Wallonia-Brussels Federation",
+      "credits": "Winner of the <strong>Journalism Prize of the Parliament of the Wallonia-Brussels Federation</strong>. Produced as part of the <strong>Médias Francophones Publics (MFP)</strong>, in collaboration notably between <strong>RTBF</strong>, <strong>France 24</strong> and <strong>France Info</strong>."
+    },
+    "thumb": "/images/rtbf-muskmfp-thumb.jpg"
+  }
+]

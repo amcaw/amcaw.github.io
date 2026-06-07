@@ -1,7 +1,9 @@
 <script>
   import Icon from './Icon.svelte';
   import { reveal } from '$lib/reveal.js';
+  import { lang, UI } from '$lib/i18n.js';
   let { projects = [] } = $props();
+  let t = $derived(UI[$lang]);
 </script>
 
 <div class="list">
@@ -9,7 +11,7 @@
     <a class="row reveal" href={`/work/${p.slug}`} use:reveal>
       <div class="row__thumb">
         {#if p.image}
-          <img class="thumb-img" src={p.image} alt={`Aperçu — ${p.title}`} loading="lazy" />
+          <img class="thumb-img" src={p.thumb || p.image} alt={`${t.previewAlt} — ${p.title}`} loading="lazy" />
         {:else}
           <div class="ph"></div>
         {/if}

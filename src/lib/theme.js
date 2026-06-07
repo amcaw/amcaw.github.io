@@ -1,4 +1,4 @@
-// Light/dark theme store. Persists to localStorage and reflects onto <html data-theme>.
+
 import { writable } from 'svelte/store';
 import { browser } from '$app/environment';
 

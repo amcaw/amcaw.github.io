@@ -1,6 +1,5 @@
-// Svelte action: fades/slides an element in when it scrolls into view.
-// Usage: <div class="reveal" use:reveal>…</div>
-// Respects prefers-reduced-motion via the CSS in app.css (no `in` class needed there).
+
+
 /**
  * @param {HTMLElement} node
  * @param {{ threshold?: number, once?: boolean }} [options]
