@@ -7,8 +7,10 @@ const config = {
 		runes: ({ filename }) => (filename.split(/[/\\]/).includes('node_modules') ? undefined : true)
 	},
 	kit: {
-		// Site statique pour GitHub Pages. fallback: SPA-routing pour les pages /work/[slug].
-		adapter: adapter({ fallback: '200.html' }),
+		// Site statique pour GitHub Pages. Le fallback doit s'appeler 404.html :
+		// Pages sert ce fichier pour toute route non prerendue (ex. /work/[slug]),
+		// ce qui déclenche le routing SPA côté client.
+		adapter: adapter({ fallback: '404.html' }),
 		// Site utilisateur (amcaw.github.io) servi à la racine -> pas de base path.
 		paths: { base: '' }
 	}
