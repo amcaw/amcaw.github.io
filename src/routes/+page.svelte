@@ -86,7 +86,7 @@
             <div class="fcard__media">
               <span class="fcard__tag">{p.type}</span>
               {#if p.image}
-                <img class="thumb-img" src={p.thumb || p.image} alt={`${t.previewAlt} — ${p.title}`} loading="lazy" />
+                <img class="thumb-img" src={p.thumb || p.image} alt={`${t.previewAlt} — ${p.title}`} width="480" height="300" loading="lazy" />
               {:else}
                 <div class="ph"></div>
               {/if}

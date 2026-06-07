@@ -74,7 +74,7 @@
       <div class="detail__shots-grid" class:is-pair={shots.length > 1}>
         {#if shots.length}
           {#each shots as src}
-            <img class="detail__shot-img" {src} alt={`${t.captureAlt} — ${project.title}`} loading="lazy" />
+            <img class="detail__shot-img" {src} alt={`${t.captureAlt} — ${project.title}`} width="1280" height="800" loading="lazy" />
           {/each}
         {:else}
           <div class="ph"></div>
@@ -120,7 +120,7 @@
         <p class="related__label label">{t.seeAlso}</p>
         <a class="related__card" href={`/work/${related.slug}`}>
           {#if related.image}
-            <img class="related__img" src={related.thumb || related.image} alt={`${t.previewAlt} — ${related.title}`} loading="lazy" />
+            <img class="related__img" src={related.thumb || related.image} alt={`${t.previewAlt} — ${related.title}`} width="480" height="300" loading="lazy" />
           {:else}
             <div class="ph related__img"></div>
           {/if}
