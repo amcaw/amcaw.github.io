@@ -11,7 +11,7 @@
     <a class="row reveal" href={`/work/${p.slug}`} use:reveal>
       <div class="row__thumb">
         {#if p.image}
-          <img class="thumb-img" src={p.thumb || p.image} alt={`${t.previewAlt} — ${p.title}`} width="480" height="300" loading="lazy" />
+          <img class="thumb-img" src={p.thumb || p.image} alt={`${t.previewAlt} — ${p.title}`} width="400" height="250" loading="lazy" />
         {:else}
           <div class="ph"></div>
         {/if}

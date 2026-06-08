@@ -120,7 +120,7 @@
         <p class="related__label label">{t.seeAlso}</p>
         <a class="related__card" href={`/work/${related.slug}`}>
           {#if related.image}
-            <img class="related__img" src={related.thumb || related.image} alt={`${t.previewAlt} — ${related.title}`} width="480" height="300" loading="lazy" />
+            <img class="related__img" src={related.thumb || related.image} alt={`${t.previewAlt} — ${related.title}`} width="400" height="250" loading="lazy" />
           {:else}
             <div class="ph related__img"></div>
           {/if}

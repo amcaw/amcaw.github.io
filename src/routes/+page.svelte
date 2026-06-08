@@ -8,17 +8,22 @@
   import { lang, UI, CATEGORY_KEYS, CATEGORY_LABELS } from '$lib/i18n.js';
   import { loadProjects } from '$lib/projects.js';
 
+  let { data } = $props();
   let t = $derived(UI[$lang]);
 
-  /** @type {any[]} */
-  let projects = $state([]);
+  // FR vient du prerender (déjà dans le HTML -> pas de décalage de mise en page) ;
+  // EN est chargé à la demande lors du basculement de langue.
+  /** @type {Record<string, any[]>} */
+  let loaded = $state({});
   let loadErr = $state('');
   $effect(() => {
     const current = $lang;
+    if (current === 'fr' || loaded[current]) return;
     loadProjects(current)
-      .then((p) => { projects = p; loadErr = ''; })
-      .catch((e) => { projects = []; loadErr = e instanceof Error ? e.message : String(e); });
+      .then((p) => { loaded = { ...loaded, [current]: p }; loadErr = ''; })
+      .catch((e) => { loadErr = e instanceof Error ? e.message : String(e); });
   });
+  let projects = $derived($lang === 'fr' ? data.projectsFr : (loaded[$lang] ?? data.projectsFr));
 
   let cat = $state('Tout');
   let filtered = $derived(cat === 'Tout' ? projects : projects.filter((p) => p.cats.includes(cat)));
@@ -82,12 +87,13 @@
 
     {#if showFeatured && featured.length}
       <div class="featured">
-        {#each featured as p (p.slug)}
+        {#each featured as p, i (p.slug)}
           <a class="fcard reveal" href={`/work/${p.slug}`} use:reveal>
             <div class="fcard__media">
               <span class="fcard__tag">{p.type}</span>
               {#if p.image}
-                <img class="thumb-img" src={p.thumb || p.image} alt={`${t.previewAlt} — ${p.title}`} width="480" height="300" loading="lazy" />
+                <img class="thumb-img" src={p.thumb || p.image} alt={`${t.previewAlt} — ${p.title}`} width="400" height="250"
+                     loading={i === 0 ? 'eager' : 'lazy'} fetchpriority={i === 0 ? 'high' : undefined} />
               {:else}
                 <div class="ph"></div>
               {/if}
