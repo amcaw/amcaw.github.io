@@ -74,7 +74,7 @@
       <div class="detail__shots-grid" class:is-pair={shots.length > 1}>
         {#if shots.length}
           {#each shots as src}
-            <img class="detail__shot-img" {src} alt={`${t.captureAlt} — ${project.title}`} width="1280" height="800" loading="lazy" />
+            <img class="detail__shot-img" {src} alt={`${t.captureAlt} — ${project.title}`} loading="lazy" />
           {/each}
         {:else}
           <div class="ph"></div>
