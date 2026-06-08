@@ -3,7 +3,6 @@
   import IndexList from '$lib/components/IndexList.svelte';
   import Icon from '$lib/components/Icon.svelte';
   import ContactForm from '$lib/components/ContactForm.svelte';
-  import SocialLinks from '$lib/components/SocialLinks.svelte';
   import { reveal } from '$lib/reveal.js';
   import { lang, UI, CATEGORY_KEYS, CATEGORY_LABELS } from '$lib/i18n.js';
   import { loadProjects } from '$lib/projects.js';
@@ -40,17 +39,6 @@
   });
   let visibleProjects = $derived(listProjects.slice(0, shown));
   let remaining = $derived(Math.max(0, listProjects.length - shown));
-
-  let showTop = $state(false);
-  $effect(() => {
-    const onScroll = () => (showTop = window.scrollY > window.innerHeight * 0.5);
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  });
-  function scrollToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
 </script>
 
 <svelte:head>
@@ -124,13 +112,4 @@
   <section class="section wrap" id="contact">
     <ContactForm />
   </section>
-
-  <footer class="footer wrap">
-    <span class="label">© {new Date().getFullYear()} {PROFILE.name}</span>
-    <span class="footer__socials"><SocialLinks /></span>
-  </footer>
 </main>
-
-<button class="totop" class:is-visible={showTop} onclick={scrollToTop} aria-label={t.toTop}>
-  <Icon name="arrow-up" size={18} />
-</button>
