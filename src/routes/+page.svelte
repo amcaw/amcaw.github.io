@@ -80,7 +80,7 @@
             <div class="fcard__media">
               <span class="fcard__tag">{p.type}</span>
               {#if p.image}
-                <img class="thumb-img" src={p.thumb || p.image} alt={`${t.previewAlt} — ${p.title}`} width="400" height="250"
+                <img class="thumb-img" src={p.image} alt={`${t.previewAlt} — ${p.title}`} width="1280" height="800"
                      loading={i === 0 ? 'eager' : 'lazy'} fetchpriority={i === 0 ? 'high' : undefined} />
               {:else}
                 <div class="ph"></div>
