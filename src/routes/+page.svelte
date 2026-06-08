@@ -3,6 +3,7 @@
   import IndexList from '$lib/components/IndexList.svelte';
   import Icon from '$lib/components/Icon.svelte';
   import ContactForm from '$lib/components/ContactForm.svelte';
+  import SocialLinks from '$lib/components/SocialLinks.svelte';
   import { reveal } from '$lib/reveal.js';
   import { lang, UI, CATEGORY_KEYS, CATEGORY_LABELS } from '$lib/i18n.js';
   import { loadProjects } from '$lib/projects.js';
@@ -120,6 +121,7 @@
 
   <footer class="footer wrap">
     <span class="label">© {new Date().getFullYear()} {PROFILE.name}</span>
+    <span class="footer__socials"><SocialLinks /></span>
   </footer>
 </main>
 
