@@ -288,7 +288,7 @@
       "Interactif"
     ],
     "featured": false,
-    "url": "https://amcaw.github.io/orthophotoswallonie/lens/",
+    "url": "https://www.rtbf.be/article/a-quoi-ressemblait-votre-maison-il-y-a-10-50-ou-200-ans-en-wallonie-decouvrez-notre-outil-interactif-11614158",
     "image": "/images/orthophotoswallonie.jpg",
     "image2": "/images/orthophotoswallonie-2.jpg",
     "caption": "The lens mode overlays 1971 and 2024: on the left Wallonia, on the right the same comparison over Brussels.",
@@ -321,6 +321,10 @@
         {
           "t": "Editorial integration",
           "d": "All of it embeds into articles via pym.js (responsive iframe that adjusts to the height of the content)."
+        },
+        {
+          "t": "Two editions, a big audience hit",
+          "d": "The tool comes in a Wallonia edition and a <a href=\"https://www.rtbf.be/article/a-quoi-ressemblait-votre-lieu-de-vie-il-y-a-10-50-ou-200-ans-a-bruxelles-decouvrez-notre-outil-interactif-11614360\" target=\"_blank\" rel=\"noreferrer\">Brussels edition</a>. Even though this kind of topic has nothing to do with the news cycle, it drew a very large audience: a genuine traffic hit."
         }
       ],
       "stack": [

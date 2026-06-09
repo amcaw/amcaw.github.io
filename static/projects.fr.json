@@ -288,7 +288,7 @@
       "Interactif"
     ],
     "featured": false,
-    "url": "https://amcaw.github.io/orthophotoswallonie/lens/",
+    "url": "https://www.rtbf.be/article/a-quoi-ressemblait-votre-maison-il-y-a-10-50-ou-200-ans-en-wallonie-decouvrez-notre-outil-interactif-11614158",
     "image": "/images/orthophotoswallonie.jpg",
     "image2": "/images/orthophotoswallonie-2.jpg",
     "caption": "Le mode loupe superpose 1971 et 2024 : à gauche la Wallonie, à droite la même comparaison sur Bruxelles.",
@@ -321,6 +321,10 @@
         {
           "t": "Intégration éditoriale",
           "d": "Le tout s'embarque dans les articles via pym.js (iframe responsive qui s'ajuste à la hauteur du contenu)."
+        },
+        {
+          "t": "Deux versions, un carton d'audience",
+          "d": "L'outil existe en version Wallonie et en <a href=\"https://www.rtbf.be/article/a-quoi-ressemblait-votre-lieu-de-vie-il-y-a-10-50-ou-200-ans-a-bruxelles-decouvrez-notre-outil-interactif-11614360\" target=\"_blank\" rel=\"noreferrer\">version Bruxelles</a>. Même si ce genre de sujet n'a aucun lien avec l'actualité, il a rencontré un très large public : un vrai carton d'audience."
         }
       ],
       "stack": [
