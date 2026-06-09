@@ -304,7 +304,7 @@
       "steps": [
         {
           "t": "Imagerie officielle",
-          "d": "Les fonds proviennent des géoservices de la Région wallonne : une couche par millésime d'orthophotos, de 1971 à 2023, complétée par des cartes anciennes (Ferraris 1770, Vandermaelen 1850). Une déclinaison couvre aussi Bruxelles."
+          "d": "Les fonds proviennent des géoservices de la Région wallonne : une couche par millésime d'orthophotos, de 1971 à 2023, complétée par des cartes anciennes (Ferraris 1770, Vandermaelen 1850). Une déclinaison couvre aussi Bruxelles, où l'imagerie remonte jusqu'aux années 1930."
         },
         {
           "t": "Trois façons de comparer",
@@ -324,7 +324,7 @@
         },
         {
           "t": "Deux versions, un carton d'audience",
-          "d": "L'outil existe en version Wallonie et en <a href=\"https://www.rtbf.be/article/a-quoi-ressemblait-votre-lieu-de-vie-il-y-a-10-50-ou-200-ans-a-bruxelles-decouvrez-notre-outil-interactif-11614360\" target=\"_blank\" rel=\"noreferrer\">version Bruxelles</a>, cette dernière remontant jusqu'aux années 1930. Même si ce genre de sujet n'a aucun lien avec l'actualité, il a rencontré un très large public : un vrai carton d'audience."
+          "d": "L'outil existe en version Wallonie et en <a href=\"https://www.rtbf.be/article/a-quoi-ressemblait-votre-lieu-de-vie-il-y-a-10-50-ou-200-ans-a-bruxelles-decouvrez-notre-outil-interactif-11614360\" target=\"_blank\" rel=\"noreferrer\">version Bruxelles</a>. Même si ce genre de sujet n'a aucun lien avec l'actualité, il a rencontré un très large public : un vrai carton d'audience."
         }
       ],
       "stack": [
