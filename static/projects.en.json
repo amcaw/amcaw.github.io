@@ -250,7 +250,7 @@
       "steps": [
         {
           "t": "From GPS traces to cohorts",
-          "d": "The starting point is thousands of runners' GPS traces. They are grouped into cohorts (five finish-time levels × two sexes), so we can reason about comparable groups rather than individuals."
+          "d": "The starting point is thousands of runners' GPS traces shared publicly on Strava. They are grouped into cohorts (five finish-time levels × two sexes), so we can reason about comparable groups rather than individuals."
         },
         {
           "t": "Detecting the suffering zones",

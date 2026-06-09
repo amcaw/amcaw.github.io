@@ -250,7 +250,7 @@
       "steps": [
         {
           "t": "Des traces GPS aux cohortes",
-          "d": "Le point de départ, ce sont des milliers de traces GPS de coureurs. Elles sont regroupées en cohortes (cinq niveaux de chrono × deux sexes), de quoi raisonner sur des groupes comparables plutôt que sur des individus."
+          "d": "Le point de départ, ce sont des milliers de traces GPS de coureurs publiées publiquement sur Strava. Elles sont regroupées en cohortes (cinq niveaux de chrono × deux sexes), de quoi raisonner sur des groupes comparables plutôt que sur des individus."
         },
         {
           "t": "Détection des zones de souffrance",
