@@ -22,7 +22,9 @@
       .then((p) => { loaded = { ...loaded, [current]: p }; loadErr = ''; })
       .catch((e) => { loadErr = e instanceof Error ? e.message : String(e); });
   });
-  let projects = $derived($lang === 'fr' ? data.projectsFr : (loaded[$lang] ?? data.projectsFr));
+  let source = $derived($lang === 'fr' ? data.projectsFr : (loaded[$lang] ?? data.projectsFr));
+  // tri par date de publication, du plus récent au plus ancien
+  let projects = $derived([...source].sort((a, b) => (b.sortDate || '').localeCompare(a.sortDate || '')));
 
   let cat = $state('Tout');
   let filtered = $derived(cat === 'Tout' ? projects : projects.filter((p) => p.cats.includes(cat)));
