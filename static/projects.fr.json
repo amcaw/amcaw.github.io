@@ -1,5 +1,62 @@
 [
   {
+    "slug": "belgium-breakout",
+    "title": "Belgium Breakout",
+    "type": "Jeu / data viz",
+    "cats": [
+      "Data viz",
+      "Interactif"
+    ],
+    "featured": true,
+    "url": "https://amcaw.github.io/belgium-breakout/",
+    "image": "/images/belgium-breakout.jpg",
+    "image2": "/images/belgium-breakout-2.jpg",
+    "thumb": "/images/belgium-breakout-thumb.jpg",
+    "caption": "Chaque commune belge est un carré de taille égale, coloré selon sa population : un « tilegram » transformé en casse-brique.",
+    "date": "17 juin 2026",
+    "sortDate": "2026-06-17",
+    "desc": "Un casse-brique où l'on « libère » les communes belges, posées sur un tilegram.",
+    "lede": "La data, c'est aussi un jeu. Belgium Breakout transforme la carte de la Belgique en casse-brique : chaque commune est une brique, plus elle est peuplée plus elle tend vers le bleu foncé et plus elle rapporte de points.",
+    "role": "Concept, data, développement",
+    "stack": "Svelte 5 · D3 · Python · GeoJSON",
+    "data": "GeoJSON des communes belges + population (Statbel)",
+    "related": "",
+    "makingof": {
+      "intro": "Je voulais depuis longtemps faire un « tilegram » de la Belgique : plutôt que de montrer les surfaces réelles, chaque commune devient un carré de même taille. Le plus dur, c'était de placer correctement les communes sur une grille façon Minecraft tout en restant géographiquement fidèle.",
+      "steps": [
+        {
+          "t": "Le déclic : la méthode de Josep Ferrer",
+          "d": "Je suis tombé sur un <a href=\"https://www.linkedin.com/posts/iamjosepferrer_this-is-spain-not-by-land-by-people-every-share-7467996310323740672-53a0/\" target=\"_blank\" rel=\"noreferrer\">post de Josep Ferrer</a> qui explique exactement comment générer ce type de grille, avec sa librairie Python open source <a href=\"https://github.com/databites-tech/popgrid\" target=\"_blank\" rel=\"noreferrer\">popgrid</a>. Le blocage de départ était levé."
+        },
+        {
+          "t": "GeoJSON + Python",
+          "d": "À partir d'un GeoJSON des communes belges et d'un peu de Python, je génère le tilegram : une grille de cases où chaque commune occupe un carré, placé pour rester fidèle à la géographie du pays."
+        },
+        {
+          "t": "L'idée du jeu",
+          "d": "En voyant le résultat, j'ai repensé au jeu de casse-brique imaginé par nos confrères de <a href=\"https://lnkd.in/eKpmKhvB\" target=\"_blank\" rel=\"noreferrer\">Contexte</a>. D'où l'idée : et si on « cassait » la carte ?"
+        },
+        {
+          "t": "Belgium Breakout, en Svelte",
+          "d": "Le tout est codé en Svelte. Chaque commune est une brique colorée selon sa population (plus c'est peuplé, plus c'est bleu foncé… et plus ça rapporte). On vise les grandes villes, on enchaîne les combos, on libère le pays case par case."
+        },
+        {
+          "t": "Ça ne sert à rien (et alors ?)",
+          "d": "Je l'accorde volontiers : ce projet ne sert à rien. Mais si tout ce qu'on créait devait servir à quelque chose… C'est aussi ça, prendre la data comme terrain de jeu."
+        }
+      ],
+      "stack": [
+        "popgrid (Josep Ferrer)",
+        "Python",
+        "GeoJSON",
+        "Svelte 5",
+        "D3",
+        "pym.js"
+      ],
+      "credits": "Tilegram généré avec la librairie <a href=\"https://github.com/databites-tech/popgrid\" target=\"_blank\" rel=\"noreferrer\">popgrid</a> de <a href=\"https://www.linkedin.com/posts/iamjosepferrer_this-is-spain-not-by-land-by-people-every-share-7467996310323740672-53a0/\" target=\"_blank\" rel=\"noreferrer\">Josep Ferrer</a>. Concept de jeu inspiré de <a href=\"https://lnkd.in/eKpmKhvB\" target=\"_blank\" rel=\"noreferrer\">Contexte</a>."
+    }
+  },
+  {
     "slug": "warmaps-ukraine",
     "title": "Suivi quotidien de la guerre en Ukraine en cartes",
     "type": "Carte interactive",
@@ -7,7 +64,7 @@
       "Cartes",
       "Interactif"
     ],
-    "featured": true,
+    "featured": false,
     "url": "https://www.rtbf.be/article/guerre-en-ukraine-ou-en-est-la-ligne-de-front-aujourd-hui-carte-interactive-mise-a-jour-au-quotidien-11710636",
     "image": "/images/warmaps-2.jpg",
     "image2": "/images/warmaps.jpg",

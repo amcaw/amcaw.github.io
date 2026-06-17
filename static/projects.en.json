@@ -1,5 +1,62 @@
 [
   {
+    "slug": "belgium-breakout",
+    "title": "Belgium Breakout",
+    "type": "Game / data viz",
+    "cats": [
+      "Data viz",
+      "Interactif"
+    ],
+    "featured": true,
+    "url": "https://amcaw.github.io/belgium-breakout/",
+    "image": "/images/belgium-breakout.jpg",
+    "image2": "/images/belgium-breakout-2.jpg",
+    "thumb": "/images/belgium-breakout-thumb.jpg",
+    "caption": "Every Belgian municipality is an equal-sized square, coloured by population: a tilegram turned into a brick-breaker.",
+    "date": "17 June 2026",
+    "sortDate": "2026-06-17",
+    "desc": "A brick-breaker where you 'free' Belgian municipalities laid out on a tilegram.",
+    "lede": "Data is also a game. Belgium Breakout turns the map of Belgium into a brick-breaker: each municipality is a brick, the more people it has, the deeper blue it gets and the more points it's worth.",
+    "role": "Concept, data, development",
+    "stack": "Svelte 5 · D3 · Python · GeoJSON",
+    "data": "GeoJSON of Belgian municipalities + population (Statbel)",
+    "related": "",
+    "makingof": {
+      "intro": "I'd wanted to build a tilegram of Belgium for a long time: instead of showing real land areas, every municipality becomes an equal-sized square. The hard part was placing the municipalities on a Minecraft-like grid while staying geographically faithful.",
+      "steps": [
+        {
+          "t": "The unlock: Josep Ferrer's method",
+          "d": "I came across a <a href=\"https://www.linkedin.com/posts/iamjosepferrer_this-is-spain-not-by-land-by-people-every-share-7467996310323740672-53a0/\" target=\"_blank\" rel=\"noreferrer\">post by Josep Ferrer</a> explaining exactly how to generate this kind of grid, with his open-source Python library <a href=\"https://github.com/databites-tech/popgrid\" target=\"_blank\" rel=\"noreferrer\">popgrid</a>. The initial roadblock was gone."
+        },
+        {
+          "t": "GeoJSON + Python",
+          "d": "From a GeoJSON of Belgian municipalities and a bit of Python, I generate the tilegram: a grid where each municipality occupies one square, placed to stay faithful to the country's geography."
+        },
+        {
+          "t": "The game idea",
+          "d": "Looking at the result, I thought back to the brick-breaker game built by our colleagues at <a href=\"https://lnkd.in/eKpmKhvB\" target=\"_blank\" rel=\"noreferrer\">Contexte</a>. Hence the idea: what if you could 'break' the map?"
+        },
+        {
+          "t": "Belgium Breakout, in Svelte",
+          "d": "It's all coded in Svelte. Each municipality is a brick coloured by population (denser = deeper blue… and worth more). Aim for the big cities, chain combos, free the country square by square."
+        },
+        {
+          "t": "It's useless (so what?)",
+          "d": "I'll happily admit it: this project is useless. But if everything we made had to be useful… Treating data as a playground is part of the job too."
+        }
+      ],
+      "stack": [
+        "popgrid (Josep Ferrer)",
+        "Python",
+        "GeoJSON",
+        "Svelte 5",
+        "D3",
+        "pym.js"
+      ],
+      "credits": "Tilegram generated with <a href=\"https://www.linkedin.com/posts/iamjosepferrer_this-is-spain-not-by-land-by-people-every-share-7467996310323740672-53a0/\" target=\"_blank\" rel=\"noreferrer\">Josep Ferrer</a>'s <a href=\"https://github.com/databites-tech/popgrid\" target=\"_blank\" rel=\"noreferrer\">popgrid</a> library. Game concept inspired by <a href=\"https://lnkd.in/eKpmKhvB\" target=\"_blank\" rel=\"noreferrer\">Contexte</a>."
+    }
+  },
+  {
     "slug": "warmaps-ukraine",
     "title": "Daily tracking of the war in Ukraine in maps",
     "type": "Interactive map",
@@ -7,7 +64,7 @@
       "Cartes",
       "Interactif"
     ],
-    "featured": true,
+    "featured": false,
     "url": "https://www.rtbf.be/article/guerre-en-ukraine-ou-en-est-la-ligne-de-front-aujourd-hui-carte-interactive-mise-a-jour-au-quotidien-11710636",
     "image": "/images/warmaps-2.jpg",
     "image2": "/images/warmaps.jpg",
