@@ -1,5 +1,251 @@
 [
   {
+    "slug": "tiktok-masculinisme",
+    "title": "Masculinism, one scroll away on TikTok",
+    "type": "Scrollytelling",
+    "cats": [
+      "Data viz",
+      "Interactif",
+      "Scrollytelling"
+    ],
+    "featured": false,
+    "url": "https://www.rtbf.be/article/sur-tiktok-le-masculinisme-a-portee-de-scroll-jusqu-ou-l-algorithme-peut-il-emmener-les-ados-11599924",
+    "image": "/images/tiktok-masculinisme.jpg",
+    "image2": "/images/tiktok-masculinisme-2.jpg",
+    "thumb": "/images/tiktok-masculinisme-thumb.jpg",
+    "caption": "The first step of each scroll block. On the left, the bot plays Matteo. On the right, the hour of scrolling is still empty, with its four categories.",
+    "date": "12 September 2025",
+    "sortDate": "2025-09-12",
+    "desc": "A bot plays a 15-year-old on TikTok to measure where the algorithm takes him.",
+    "lede": "How far can the algorithm take a teenager? To find out without exposing a real minor, we handed the phone to a bot that plays a profile, watches the videos and likes them. We then measure what TikTok serves back.",
+    "role": "Investigation, bot and web development",
+    "stack": "Svelte · D3 · Python",
+    "data": "550 items seen by the bot",
+    "related": "",
+    "makingof": {
+      "intro": "Measuring how a TikTok feed drifts means provoking that drift first. The setup combines three parts: a bot that scrolls in a teenager's place, an AI that judges each video and a chart that sums up the hour of scrolling.",
+      "steps": [
+        {
+          "t": "A bot in a teenager's place",
+          "d": "We did not want to expose a real minor, so a bot holds the phone. It plays a profile and works through the feed the way a user would, on a real device and with a real account."
+        },
+        {
+          "t": "One persona, one source of truth",
+          "d": "The profile to play fits in a single configuration sentence, which here describes Matteo, 15, into working out. That sentence alone defines what the bot should find interesting, and changing it is enough to change teenager."
+        },
+        {
+          "t": "An AI judging every video",
+          "d": "For each item, an AI is given what the screen shows and answers in one line whether the video matches the persona. That verdict decides what happens next."
+        },
+        {
+          "t": "Simulating human behaviour",
+          "d": "When a video matches, the bot lingers on it and likes it now and then, sometimes in the first seconds, sometimes at the end. The recommendation feeds on those signals, namely watch time and likes."
+        },
+        {
+          "t": "Classifying what was seen",
+          "d": "Every item encountered is recorded as the session runs. We then sorted the roughly 550 posts from an hour of scrolling into four categories: working out, motivation, masculinist and other."
+        },
+        {
+          "t": "Making the hour of scrolling visible",
+          "d": "The long read alternates a phone on screen, where videos scroll in step with the text, and a D3 chart where each item seen becomes a bar as thick as the time spent on it. Once grouped, those bars deliver the verdict: in one hour, the bot took in nearly thirteen minutes of masculinist content."
+        }
+      ],
+      "stack": [
+        "Mobile automation",
+        "Multimodal AI",
+        "Python",
+        "Svelte",
+        "D3"
+      ],
+      "credits": "Investigation: Marie-Laure Mathot and Ambroise Carton. Bot, data extraction and web development: Ambroise Carton."
+    }
+  },
+  {
+    "slug": "meteo-climat",
+    "title": "Is it warm or cold for the season?",
+    "type": "Dashboard",
+    "cats": [
+      "Cartes",
+      "Data viz",
+      "Interactif"
+    ],
+    "featured": false,
+    "url": "https://www.rtbf.be/article/fait-il-chaud-ou-froid-pour-la-saison-suivez-l-evolution-de-la-meteo-et-du-climat-avec-nos-graphiques-interactifs-11629768",
+    "image": "/images/meteo-climat.jpg",
+    "image2": "/images/meteo-climat-2.jpg",
+    "thumb": "/images/meteo-climat-thumb.jpg",
+    "caption": "The daily map places each station against its own normal. The scatter plot sets that same gap in fifty years of measurements.",
+    "date": "10 November 2025",
+    "sortDate": "2025-11-10",
+    "desc": "Belgium's climate in about twenty charts, updated every day.",
+    "lede": "About twenty charts answer the same question every day: is this normal for the season? They compare temperatures station by station against the 1991-2020 normal and set them in half a century of measurements.",
+    "role": "Concept, data, development",
+    "stack": "SvelteKit · D3 · Python",
+    "data": "RMI observations · ERA5 (Copernicus) · AQICN",
+    "related": "",
+    "makingof": {
+      "intro": "The dashboard answers a simple question every day: is it warm or cold for the season? It then sets the answer in fifty years of measurements, across about twenty charts fed by the same data chain.",
+      "steps": [
+        {
+          "t": "One measurement, one reference",
+          "d": "Everything starts from the Belgian met office's daily observations, which give the maximum temperature, the minimum temperature and the rainfall of each station. Those values are compared against the 1991-2020 normal, computed day of year by day of year. That departure from the normal is the thread running through every chart."
+        },
+        {
+          "t": "A daily Python chain",
+          "d": "Every day a Python script calls the met office API again and rewrites the whole available history instead of appending only the latest row. That strategy catches stations that reported late and values corrected after quality control. The script then regenerates the files the app consumes."
+        },
+        {
+          "t": "One chart, one address",
+          "d": "Each visualisation lives on its own route and embeds independently into articles via pym.js. The newsroom can therefore drop today's map into one story and the climate stripes into another, with nothing duplicated."
+        },
+        {
+          "t": "Readers locate themselves",
+          "d": "A selector shows the station nearest to you rather than the national average. Each chart also opens on an automatically generated sentence spelling out the day's figure, so the data reads before anyone looks at the curve."
+        },
+        {
+          "t": "From a day to half a century",
+          "d": "The scales answer each other. The map shows today's departures, the scatter plot tracks daily departures since 1971 with its rolling mean, the climate stripes sum up each year, a module detects records that have fallen and ERA5 global temperature gives the context."
+        },
+        {
+          "t": "Automation & deployment",
+          "d": "A GitHub action chains the data update and the redeployment to Cloudflare, so the dashboard refreshes with no intervention. The repository documents the calculation choices behind each chart."
+        }
+      ],
+      "stack": [
+        "RMI observations",
+        "Python · pandas",
+        "SvelteKit",
+        "D3 · TopoJSON",
+        "GitHub Actions",
+        "Cloudflare Pages",
+        "pym.js"
+      ],
+      "credits": "Sources: RMI observations, ERA5 (Copernicus), AQICN."
+    }
+  },
+  {
+    "slug": "cdm2026",
+    "title": "The 2026 World Cup in a single circle",
+    "type": "Data visualisation",
+    "cats": [
+      "Data viz",
+      "Interactif"
+    ],
+    "featured": false,
+    "url": "https://amcaw.github.io/RedDeviz/cdm2026",
+    "image": "/images/cdm2026.jpg",
+    "image2": "/images/cdm2026-2.jpg",
+    "thumb": "/images/cdm2026-thumb.jpg",
+    "caption": "The round of 32 sits on the outer ring and the champion takes the centre. Clicking a flag opens the match card, statistics included.",
+    "date": "2 July 2026",
+    "sortDate": "2026-07-02",
+    "desc": "The 2026 World Cup knockout bracket unfolded as a circle, from the round of 32 to the final.",
+    "lede": "A knockout bracket folds into a circle. The 32 teams of the round of 32 sit around the outside, each round tightens inwards and the champion arrives at the centre. Scores update live.",
+    "role": "Interactive design, development",
+    "stack": "Svelte 5 · SVG · ESPN API",
+    "data": "Live results from ESPN · video summaries from RTBF",
+    "related": "",
+    "makingof": {
+      "intro": "The project takes an existing idea, a knockout bracket unfolded into a circle, and makes it live. Scores arrive in real time, each match opens a detailed card and the video summaries play without the site ever being rebuilt.",
+      "steps": [
+        {
+          "t": "Origin & inspiration",
+          "d": "The circular bracket, where the knockout tree closes in on the champion, is borrowed from an <a href=\"https://www.instagram.com/p/DaQnOmhDSP4/?hl=fr\" target=\"_blank\" rel=\"noreferrer\">infographic by Emilio Sansolini</a>. This version offers an interactive rereading of it."
+        },
+        {
+          "t": "Rebuilding the tree",
+          "d": "The ESPN API returns a flat list of matches with no hierarchy. A module reconstructs the tree by following the winners and the qualification labels, to recover which match feeds which. A safeguard then checks that each match in a round feeds exactly one match in the next, which stops the bracket from breaking the moment a team qualifies."
+        },
+        {
+          "t": "Placing without a single crossing",
+          "d": "The angular order of the sixteen first-round matches comes from a traversal of the tree starting at the final. Each following match sits midway between its two qualifiers and the branches meet through a radial segment then an arc, so no line ever crosses another."
+        },
+        {
+          "t": "One colour per country",
+          "d": "Each team receives a colour taken from its flag, which is kept only if it stays readable in both light and dark themes. Two opponents never share the same hue, the colour of one being shifted if needed. The winner's branch is drawn in their colour and the rest of the bracket stays grey."
+        },
+        {
+          "t": "Scores, cards and videos",
+          "d": "At the merge point of each match, the score is written along the axis separating the two flags, so each figure lands opposite its own. Clicking a flag opens the match card, with possession, shots, corners, scorers, cards and recent form. A badge plays RTBF's video summary, fetched daily by a GitHub action."
+        },
+        {
+          "t": "Reveal & integration",
+          "d": "On load, the flags settle first, then the branches draw themselves round by round in a clockwise sweep. The animation gives way if the system asks for reduced motion. The SvelteKit app is deployed as a static site and embeds into articles via pym.js."
+        }
+      ],
+      "stack": [
+        "Svelte 5",
+        "SVG",
+        "ESPN API",
+        "GitHub Actions",
+        "pym.js"
+      ],
+      "credits": "Original idea: Emilio Sansolini. Live data: ESPN. Video summaries: RTBF Sport."
+    }
+  },
+  {
+    "slug": "tdf2026",
+    "title": "The Tour de France as a bicycle wheel",
+    "type": "Data visualisation",
+    "cats": [
+      "Cartes",
+      "Data viz",
+      "Interactif"
+    ],
+    "featured": true,
+    "url": "https://amcaw.github.io/RedDeviz/tdf2026",
+    "image": "/images/tdf2026.jpg",
+    "image2": "/images/tdf2026-2.jpg",
+    "thumb": "/images/tdf2026-thumb.jpg",
+    "caption": "On the left, the 21 stages form the rim and the hub zooms in on the selected stage, from Gap to Alpe d'Huez. On the right, the battle for the yellow jersey reads stage after stage.",
+    "date": "4 July 2026",
+    "sortDate": "2026-07-04",
+    "desc": "The 21 stages of the 2026 Tour laid out as a bicycle wheel, updated throughout the race.",
+    "lede": "La Grande Boucle is taken literally. The 21 stages form the rim of a wheel, France fills the hub and the yellow jersey moves along the tyre stage after stage.",
+    "role": "Concept, data, development",
+    "stack": "Svelte 5 · MapLibre · SVG",
+    "data": "Official route, GPX tracks and standings (letour.fr)",
+    "related": "",
+    "makingof": {
+      "intro": "The Tour de France is drawn as the thing it is ridden on, a wheel. The 21 stages form the rim, the hub holds the map and the yellow jersey moves along the tyre day after day.",
+      "steps": [
+        {
+          "t": "The rim, stage by stage",
+          "d": "An SVG circle is cut into 21 arcs. Each takes a width proportional to the length of its stage and a colour matching its type, whether flat, hilly, mountain or time trial. Two wider gaps mark the rest days and an opening at the top of the wheel separates the Grand Départ from the finish."
+        },
+        {
+          "t": "A map for a hub",
+          "d": "A MapLibre map clipped to a circle sits at the centre. It shows France in shaded relief and zooms in on a stage's GPS track as soon as you hover it, with the start and finish towns."
+        },
+        {
+          "t": "Profiles and climbs",
+          "d": "Elevation profiles are redrawn in SVG from the official track. An analyser picks out the hardest climb of the stage and the gradient of the closing kilometres, which makes it possible to describe the route without typing it in by hand."
+        },
+        {
+          "t": "Automatic updates",
+          "d": "During the Tour, a scheduled GitHub action reads the official standings from letour.fr several times a day, converts them into compact JSON and redeploys the site. The jerseys, the gaps and the stage winners therefore update on their own."
+        },
+        {
+          "t": "Two other readings",
+          "d": "One tab charts the cumulative gap to the leader for the top eight overall, stage after stage. Another gathers the five official classifications and the route in numbers."
+        },
+        {
+          "t": "Editorial integration",
+          "d": "The SvelteKit app is deployed as a static site and embeds into articles via pym.js."
+        }
+      ],
+      "stack": [
+        "Svelte 5",
+        "MapLibre GL",
+        "SVG",
+        "Terrain Tiles (Mapzen/AWS)",
+        "GitHub Actions",
+        "pym.js"
+      ],
+      "credits": "Sources: official route, GPX tracks and standings from letour.fr · relief Terrain Tiles (Mapzen/AWS) · outlines france-geojson (ODbL) · icons Lucide."
+    }
+  },
+  {
     "slug": "belgium-breakout",
     "title": "Belgium Breakout",
     "type": "Game / data viz",
@@ -7,7 +253,7 @@
       "Data viz",
       "Interactif"
     ],
-    "featured": true,
+    "featured": false,
     "url": "https://amcaw.github.io/belgium-breakout/",
     "image": "/images/belgium-breakout.jpg",
     "image2": "/images/belgium-breakout-2.jpg",
@@ -16,13 +262,13 @@
     "date": "17 June 2026",
     "sortDate": "2026-06-17",
     "desc": "A brick-breaker where you 'free' Belgian municipalities laid out on a tilegram.",
-    "lede": "Data is also a game. Belgium Breakout turns the map of Belgium into a brick-breaker: each municipality is a brick, the more people it has, the deeper blue it gets and the more points it's worth.",
+    "lede": "Data is also a game. Belgium Breakout turns the map of Belgium into a brick-breaker. Each municipality becomes a brick, and the more people it has, the deeper blue it gets and the more points it is worth.",
     "role": "Concept, data, development",
     "stack": "Svelte 5 · D3 · Python · GeoJSON",
     "data": "GeoJSON of Belgian municipalities + population (Statbel)",
     "related": "",
     "makingof": {
-      "intro": "I'd wanted to build a tilegram of Belgium for a long time: instead of showing real land areas, every municipality becomes an equal-sized square. The hard part was placing the municipalities on a Minecraft-like grid while staying geographically faithful.",
+      "intro": "I had wanted to build a tilegram of Belgium for a long time, where every municipality becomes an equal-sized square instead of keeping its real land area. The hard part was placing the municipalities on a Minecraft-like grid while staying geographically faithful.",
       "steps": [
         {
           "t": "The unlock: Josep Ferrer's method",
@@ -34,15 +280,15 @@
         },
         {
           "t": "The game idea",
-          "d": "Looking at the result, I thought back to the brick-breaker game built by our colleagues at <a href=\"https://lnkd.in/eKpmKhvB\" target=\"_blank\" rel=\"noreferrer\">Contexte</a>. Hence the idea: what if you could 'break' the map?"
+          "d": "Looking at the result, I thought back to the brick-breaker built by our colleagues at <a href=\"https://lnkd.in/eKpmKhvB\" target=\"_blank\" rel=\"noreferrer\">Contexte</a>, and it struck me that the map could be broken."
         },
         {
           "t": "Belgium Breakout, in Svelte",
-          "d": "It's all coded in Svelte. Each municipality is a brick coloured by population (denser = deeper blue… and worth more). Aim for the big cities, chain combos, free the country square by square."
+          "d": "It is all coded in Svelte. Each municipality becomes a brick coloured by population, so the denser ones turn a deeper blue and are worth more. You aim for the big cities, chain combos and free the country square by square."
         },
         {
-          "t": "It's useless (so what?)",
-          "d": "I'll happily admit it: this project is useless. But if everything we made had to be useful… Treating data as a playground is part of the job too."
+          "t": "It is useless, so what?",
+          "d": "I will happily admit that this project is useless. But not everything we make has to be useful, and treating data as a playground is part of the job too."
         }
       ],
       "stack": [
@@ -64,20 +310,20 @@
       "Cartes",
       "Interactif"
     ],
-    "featured": false,
+    "featured": true,
     "url": "https://www.rtbf.be/article/guerre-en-ukraine-ou-en-est-la-ligne-de-front-aujourd-hui-carte-interactive-mise-a-jour-au-quotidien-11710636",
     "image": "/images/warmaps-2.jpg",
     "image2": "/images/warmaps.jpg",
-    "caption": "The map of territorial control in Ukraine (left). The same tool powered a Middle East version (right), built on the same technical foundation and the same ISW data.",
+    "caption": "The map of territorial control in Ukraine, on the left. The same tool powered a Middle East version, on the right, built on the same technical foundation and the same ISW data.",
     "date": "16 April 2026 (updated daily)",
     "desc": "Where does the front line stand in Ukraine? An interactive map updated every day.",
-    "lede": "A map of territorial control in Ukraine, updated automatically every day. The daily assessments from the Institute for the Study of War, received as email attachments, are unzipped, converted to a geographic format and then placed automatically on the map (with no manual intervention), keeping the front line continuously up to date.",
+    "lede": "This map of territorial control in Ukraine updates automatically every day. The daily assessments from the Institute for the Study of War arrive as email attachments, then get unzipped, converted to a geographic format and placed on the map with no manual intervention, which keeps the front line continuously up to date.",
     "role": "Concept, data, development",
     "stack": "SvelteKit · MapLibre · GitHub Actions",
     "data": "ISW (Gmail ingestion)",
     "related": "",
     "makingof": {
-      "intro": "The challenge: publish a reliable map of the front every day without touching it by hand. The source (the Institute for the Study of War's shapefiles) arrives by email, in a raw GIS format. Everything else is automated, from the email to the pixel.",
+      "intro": "The challenge is to publish a reliable map of the front every day without touching it by hand. The Institute for the Study of War's shapefiles arrive by email in a raw GIS format, and everything else is automated, from the email to the pixel.",
       "steps": [
         {
           "t": "Received by email",
@@ -97,7 +343,7 @@
         },
         {
           "t": "Build & deployment",
-          "d": "The same workflow rebuilds the site and deploys it to GitHub Pages. The RTBF article embeds it via pym.js (responsive iframe). Zero human intervention between the email and the published map."
+          "d": "The same workflow rebuilds the site and deploys it to GitHub Pages. The RTBF article embeds it via pym.js in a responsive iframe. No human intervention takes place between the arrival of the email and the publication of the map."
         }
       ],
       "stack": [
@@ -120,11 +366,11 @@
       "Data viz",
       "Interactif"
     ],
-    "featured": true,
+    "featured": false,
     "url": "https://www.rtbf.be/article/de-1904-a-nos-jours-les-diables-rouges-sur-une-carte-du-monde-infographie-interactive-11736279",
     "image": "/images/reddeviz.jpg",
     "image2": "",
-    "caption": "The globe brings together more than 860 matches of the Belgian national teams; the filters isolate competitions, results and notable streaks.",
+    "caption": "The globe brings together more than 860 matches of the Belgian national teams. The filters isolate competitions, results and notable streaks.",
     "date": "6 June 2026",
     "desc": "A cartochronology of every match of the Red Devils and the Red Flames.",
     "lede": "Every match of the Belgian national teams, placed back in time and space. Hover or click to explore opponents, venues and results across the decades.",
@@ -133,7 +379,7 @@
     "data": "History of national team matches",
     "related": "",
     "makingof": {
-      "intro": "More than a century of matches from the two Belgian national teams, brought together on a single globe. The idea for the visualisation did not come from nowhere: it adapts an existing format, applied this time to the Belgian sides, using official data from the Royal Belgian Football Association (RBFA).",
+      "intro": "More than a century of matches from the two Belgian national teams come together on a single globe. The visualisation adapts an existing format and applies it this time to the Belgian sides, using official data from the Royal Belgian Football Association.",
       "steps": [
         {
           "t": "Origins & inspiration",
@@ -145,7 +391,7 @@
         },
         {
           "t": "Automatic geocoding",
-          "d": "Each host city is converted into coordinates via Nominatim (OpenStreetMap). No coordinate is typed in by hand: a cache avoids re-geocoding, and ambiguous places are corrected via a disambiguation table."
+          "d": "Each host city is converted into coordinates via Nominatim, the OpenStreetMap geocoding service. A cache avoids re-geocoding the same cities and a disambiguation table corrects ambiguous places, so no coordinate is typed in by hand."
         },
         {
           "t": "Neutral ground & edge cases",
@@ -185,16 +431,16 @@
     "url": "https://www.rtbf.be/article/faut-il-attendre-demain-pour-faire-le-plein-suivez-les-prix-des-carburants-avec-notre-outil-interactif-11698964",
     "image": "/images/svelte-gas-price-2.jpg",
     "image2": "/images/svelte-gas-price.jpg",
-    "caption": "The ranking of the best prices by province and the fill-up calculator, two embedded widgets updated automatically.",
+    "caption": "The ranking of the best prices by province and the fill-up calculator form two embedded widgets that update automatically.",
     "date": "24 March 2026 (updated daily)",
     "desc": "Embeddable widgets on fuel prices in Belgium, refreshed several times a day.",
-    "lede": "Designed against the backdrop of the rise in fuel prices that followed the start of the US and Israeli offensive against Iran. How much does a tank of fuel cost today compared with a past date, and where can you find the best prices by province? Two widgets embeddable in articles on the RTBF Actus site, fed automatically via GitHub Actions.",
+    "lede": "These two widgets grew out of the rise in fuel prices that followed the start of the US and Israeli offensive against Iran. They answer two questions: how much does a tank of fuel cost today compared with a past date, and where can you find the best prices by province? They embed into articles on the RTBF Actus site and refresh automatically via GitHub Actions.",
     "role": "Development & data",
     "stack": "Svelte 5 · D3 · pym.js · GitHub Actions",
     "data": "SPF Économie · Statbel · carbu.com",
     "related": "",
     "makingof": {
-      "intro": "Two widgets designed to answer, with the figures to back it up, a very concrete question: should you fill up today or wait until tomorrow? All of it updated on its own, several times a day, and ready to be dropped into an article.",
+      "intro": "These two widgets answer, with the figures to back it up, a very concrete question: should you fill up today or wait until tomorrow? They update on their own several times a day and drop straight into an article.",
       "steps": [
         {
           "t": "Official sources",
@@ -210,7 +456,7 @@
         },
         {
           "t": "Two widgets, one foundation",
-          "d": "A calculator (cost of a tank today versus a past date) and a ranking of the best prices by province share the same Svelte foundation, with a carefully crafted palette and labels."
+          "d": "A calculator, which compares the cost of a tank today with that of a past date, and a ranking of the best prices by province share the same Svelte foundation, with a carefully crafted palette and labels."
         },
         {
           "t": "Editorial integration",
@@ -245,13 +491,13 @@
     "caption": "Type a name or a bib number to place a performance within the distribution of all runners.",
     "date": "1 June 2026",
     "desc": "Your personal recap of the 20 km of Brussels: where do you stand compared with the other participants?",
-    "lede": "Tens of thousands of runners, one course, a wealth of times. This multilingual tool lets you place a performance within the full field of participants.",
+    "lede": "Tens of thousands of runners share one course and a wealth of finishing times. This multilingual tool places a performance within the full field of participants.",
     "role": "Development & data",
     "stack": "Svelte · D3",
     "data": "Official results of the 20 km of Brussels",
     "related": "",
     "makingof": {
-      "intro": "Tens of thousands of runners, and one promise: let everyone find their place in the race in a few seconds. All the work consists of turning a long list of times into a personal, readable narrative.",
+      "intro": "Tens of thousands of runners take the start, and the tool promises each of them a place in the race within seconds. All the work consists of turning a long list of times into a personal, readable narrative.",
       "steps": [
         {
           "t": "From raw results to distributions",
@@ -259,7 +505,7 @@
         },
         {
           "t": "Finding your place in the crowd",
-          "d": "These distributions answer the runner's real question: where do I rank? A time (or a bib number) is compared with the whole field of participants, by sex and by age category."
+          "d": "These distributions answer the runner's real question: where do I rank? A time or a bib number is compared with the whole field of participants, by sex and by age category."
         },
         {
           "t": "Every profile",
@@ -301,17 +547,17 @@
     "caption": "The narrative links the course profile to the observed slowdowns, kilometre by kilometre, according to your runner profile.",
     "date": "21 May 2026",
     "desc": "The toughest zones of the 20 km of Brussels course, according to your profile.",
-    "lede": "A scrolling narrative that turns the split times of thousands of runners into a reading of the course: the climbs, the fatigue points and the places where the crowd slows down, kilometre by kilometre.",
+    "lede": "This scrolling narrative turns the split times of thousands of runners into a reading of the course. It shows the climbs, the fatigue points and the places where the crowd slows down, kilometre by kilometre.",
     "role": "Concept, data, web development",
     "stack": "SvelteKit · D3",
     "data": "Official split times of the 20 km of Brussels",
     "related": "",
     "makingof": {
-      "intro": "A personalised scrollytelling: the reader enters their sex, age and target time, then runs down the course, suffering zone by suffering zone. The editorial question is simple: where does your group really slow down?",
+      "intro": "The reader enters their sex, age and target time, then runs down the course, suffering zone by suffering zone. The editorial question is simple: where does your group really slow down?",
       "steps": [
         {
           "t": "From GPS traces to cohorts",
-          "d": "The starting point is thousands of runners' GPS traces shared publicly on Strava. They are grouped into cohorts (five finish-time levels × two sexes), so we can reason about comparable groups rather than individuals."
+          "d": "The starting point gathers thousands of runners' GPS traces shared publicly on Strava. They are grouped into cohorts, five finish-time levels crossed with the two sexes, which makes it possible to reason about comparable groups rather than individuals."
         },
         {
           "t": "Detecting the suffering zones",
@@ -319,7 +565,7 @@
         },
         {
           "t": "Pace × elevation",
-          "d": "Each zone is cross-referenced with the course elevation profile (uphill, flat, downhill) and accompanied by a signed pace gap relative to the group's race average, plus a targeted coaching comment."
+          "d": "Each zone is cross-referenced with the course elevation profile, depending on whether it climbs, stays flat or descends. It comes with a signed pace gap relative to the group's race average and a targeted coaching comment."
         },
         {
           "t": "The right granularity for everyone",
@@ -327,7 +573,7 @@
         },
         {
           "t": "Rendering & scrollytelling",
-          "d": "All of it is rendered in SvelteKit with D3: elevation bands, progress overlays and pace charts, orchestrated by scrolling for a guided reading."
+          "d": "All of it is rendered in SvelteKit with D3, which draws the elevation bands, the progress overlays and the pace charts, orchestrated by scrolling for a guided reading."
         }
       ],
       "stack": [
@@ -362,15 +608,15 @@
     "data": "Official Wallonia & Brussels orthophotos (WMTS)",
     "related": "",
     "makingof": {
-      "intro": "Fifty years of aerial photographs overlaid on a single map, to watch a territory change. The challenge: make a mass of official imagery as simple to explore as a slider you drag.",
+      "intro": "Fifty years of aerial photographs overlay on a single map to show a territory changing. The challenge is to make a mass of official imagery as simple to explore as a slider you drag.",
       "steps": [
         {
           "t": "Official imagery",
-          "d": "The basemaps come from the Walloon Region's geoservices: one layer per orthophoto vintage, from 1971 to 2023, supplemented with historical maps (Ferraris 1770, Vandermaelen 1850). A <a href=\"https://www.rtbf.be/article/a-quoi-ressemblait-votre-lieu-de-vie-il-y-a-10-50-ou-200-ans-a-bruxelles-decouvrez-notre-outil-interactif-11614360\" target=\"_blank\" rel=\"noreferrer\">variant also covers Brussels</a>, where the imagery goes back to the 1930s."
+          "d": "The basemaps come from the Walloon Region's geoservices, with one layer per orthophoto vintage from 1971 to 2023, supplemented with historical maps by Ferraris (1770) and Vandermaelen (1850). A <a href=\"https://www.rtbf.be/article/a-quoi-ressemblait-votre-lieu-de-vie-il-y-a-10-50-ou-200-ans-a-bruxelles-decouvrez-notre-outil-interactif-11614360\" target=\"_blank\" rel=\"noreferrer\">variant also covers Brussels</a>, where the imagery goes back to the 1930s."
         },
         {
           "t": "Three ways to compare",
-          "d": "A lens mode (which reveals another year under a disc), a before/after mode through time and an animated timelapse mode: three entry points for the same question, how has this place evolved?"
+          "d": "A lens mode reveals another year under a disc, a before/after mode compares two vintages and an animated timelapse runs through the decades. These three entry points answer the same question: how has this place evolved?"
         },
         {
           "t": "Go straight to your neighbourhood",
@@ -386,7 +632,7 @@
         },
         {
           "t": "Two editions, a big audience hit",
-          "d": "The tool comes in a Wallonia edition and a Brussels edition. Even though this kind of topic has nothing to do with the news cycle, it drew a very large audience: a genuine traffic hit."
+          "d": "The tool comes in a Wallonia edition and a Brussels edition. Even though this kind of topic has nothing to do with the news cycle, it reached a very large audience and became a genuine traffic hit."
         }
       ],
       "stack": [
@@ -422,11 +668,11 @@
     "data": "Global Fishing Watch (AIS signals)",
     "related": "",
     "makingof": {
-      "intro": "A scrollytelling that follows a cargo ship, the Giacometti, to tell how Iran opens and closes one of the most strategic shipping passages in the world. The challenge: make a complex maritime situation readable, step by step.",
+      "intro": "This scrollytelling follows a cargo ship, the Giacometti, to tell how Iran opens and closes one of the most strategic shipping passages in the world. The challenge is to make a complex maritime situation readable, step by step.",
       "steps": [
         {
           "t": "Following a ship",
-          "d": "The narrative latches onto the trajectory of a real cargo ship through the strait, reconstructed from its near-real-time position. Source of ship data: Global Fishing Watch."
+          "d": "The narrative latches onto the trajectory of a real cargo ship through the strait, reconstructed from its near-real-time position. The ship data comes from Global Fishing Watch."
         },
         {
           "t": "Reading maritime traffic",
@@ -434,11 +680,11 @@
         },
         {
           "t": "Annotated satellite imagery",
-          "d": "The Sentinel-1 radar images (SAR, which sees by day as by night and through clouds) are retrieved and assembled via Python scripts on the Copernicus Data Space, then annotated by hand to point out ship groupings, circles and labels placed to the pixel."
+          "d": "The Sentinel-1 radar images see by day as by night and through clouds. They are retrieved and assembled via Python scripts on the Copernicus Data Space, then annotated by hand to point out ship groupings, with circles and labels placed to the pixel."
         },
         {
           "t": "Sectioned narrative",
-          "d": "The story is broken into sections that follow one another as you scroll (the ship, the \"non-hostile ships\", the blocked vessels), each with its own map and charts in D3."
+          "d": "The story is broken into sections that follow one another as you scroll, from the ship to the \"non-hostile ships\" and then the blocked vessels, each with its own map and charts in D3."
         },
         {
           "t": "On a reusable foundation",
@@ -470,20 +716,20 @@
     "url": "https://www.rtbf.be/article/le-sud-liban-raye-de-la-carte-israel-rase-des-villages-au-bulldozer-et-a-l-explosif-la-preuve-en-images-11716451",
     "image": "/images/south-liban-2.jpg",
     "image2": "/images/south-liban.jpg",
-    "caption": "Geolocated drone videos document the destruction village by village; the map records the strikes around Beirut.",
+    "caption": "Geolocated videos document the destruction village by village. The map, for its part, records the strikes counted across the country.",
     "date": "19 April 2026",
     "desc": "Israel is razing villages in southern Lebanon with bulldozers and explosives: the proof in images.",
-    "lede": "Satellite images and geolocated drone videos document, village by village, the destruction of a buffer zone along the Israeli border.",
+    "lede": "Satellite images and geolocated videos document, village by village, the destruction of a buffer zone along the Israeli border.",
     "role": "Web development, data",
     "stack": "SvelteKit · MapLibre · satellite imagery",
     "data": "IDF · Reuters · ISW · CNRS · Oregon State University",
     "related": "",
     "makingof": {
-      "intro": "Documenting, with proof in hand, the destruction of villages in southern Lebanon along the Israeli border. The whole challenge is to verify and geolocate what was destroyed, village by village.",
+      "intro": "The piece documents, with proof in hand, the destruction of villages in southern Lebanon along the Israeli border. The whole challenge is to verify and geolocate what was destroyed, village by village.",
       "steps": [
         {
-          "t": "Satellite imagery (Python + Sentinel)",
-          "d": "Python scripts query the Copernicus Data Space to retrieve Sentinel imagery: true colour (Sentinel-2) and radar (Sentinel-1, SAR). A radar backscatter change detection brings out the buildings that disappeared between two dates."
+          "t": "From video to map",
+          "d": "The opening chains full-screen videos with a MapLibre map shown as an inset, which then expands to fill the screen. Each step of the story has its own camera position, in a desktop and a mobile variant."
         },
         {
           "t": "Verify and geolocate",
@@ -495,14 +741,13 @@
         },
         {
           "t": "Narrative & distribution",
-          "d": "The article is built on an in-house template (map, annotated images, callouts, grids) and deployed as static, ready to be embedded in RTBF content."
+          "d": "The article is built on an in-house template that provides the map, the annotated images, the callouts and the grids. It is deployed as a static site, ready to be embedded in RTBF content."
         }
       ],
       "stack": [
-        "Python",
-        "Sentinel-1 / Sentinel-2 (Copernicus)",
         "MapLibre GL",
         "SvelteKit",
+        "GeoJSON",
         "In-house article template"
       ],
       "credits": "Sources: IDF, Reuters, ISW, CNRS (Lebanon), Oregon State University."
@@ -531,11 +776,11 @@
     "data": "CNN · AFP · Reuters · DHS · metadata analysis",
     "related": "",
     "makingof": {
-      "intro": "Reconstructing, second by second, the death of Renee Good, killed by an ICE agent in Minnesota. The goal: to confront the visual sources to offer the most precise possible reconstruction of the scene, without ruling in place of the investigation.",
+      "intro": "The story reconstructs, second by second, the death of Renee Good, killed by an ICE agent in Minnesota. The goal is to confront the visual sources in order to offer the most precise possible reconstruction of the scene, without ruling in place of the investigation.",
       "steps": [
         {
           "t": "OSINT investigation",
-          "d": "The work relies on open source intelligence (OSINT) techniques: collecting and verifying surveillance, body-cam and witness videos, cross-referenced with satellite imagery of the location."
+          "d": "The work relies on open source intelligence techniques. Surveillance, body-cam and witness videos are collected and verified, then cross-referenced with satellite imagery of the location."
         },
         {
           "t": "Synchronising the sources",
@@ -543,7 +788,7 @@
         },
         {
           "t": "From spreadsheet to narrative",
-          "d": "The sequence is driven by a spreadsheet (steps, texts, media, timestamps) converted to JSON by a Python script, then the videos are optimised for the web."
+          "d": "The sequence is driven by a spreadsheet describing the steps, the texts, the media and the timestamps. A Python script converts it to JSON, then the videos are optimised for the web."
         },
         {
           "t": "Mapped scrollytelling",
@@ -573,42 +818,52 @@
     "url": "https://www.rtbf.be/article/une-renovation-artisanale-devenue-un-piege-mortel-l-incendie-du-constellation-a-crans-montana-explique-en-3d-11662616",
     "image": "/images/rtbf-constellation.jpg",
     "image2": "/images/rtbf-constellation-2.jpg",
-    "caption": "The 3D model of the bar reconstructs how the fire unfolded; videos from the night are matched against the model.",
+    "caption": "On the left, the 3D model of the bar opens the story. On the right, the five witness videos are realigned on the waveform of the track playing that night.",
     "date": "16 January 2026",
     "desc": "An amateur renovation turned deadly trap: the Constellation fire explained in 3D.",
     "lede": "On New Year's night 2026, a bar in Crans-Montana goes up in flames in a matter of seconds. A 3D model of the premises reconstructs the key moments of the evening and the deadly trap the venue became.",
-    "role": "Web development",
-    "stack": "SvelteKit · 3D model",
-    "data": "3D model: RTS · reporting Décrypte",
+    "role": "Story and web development",
+    "stack": "SvelteKit · Three.js · D3",
+    "data": "3D model: RTS · Valais cantonal police",
     "related": "",
     "makingof": {
-      "intro": "Reconstructing in 3D an evening that turned to tragedy: the fire at the bar Le Constellation, in Crans-Montana, on New Year's night. The challenge is to understand, space by space, how a festive venue became a deadly trap.",
+      "intro": "The story explains, room by room, how a ski-resort bar became a death trap in under a minute. The development work consists of putting a 3D model at the service of the text and turning it in step with the reading.",
       "steps": [
         {
-          "t": "OSINT investigation",
-          "d": "The circumstances of the fire are retraced through open source intelligence (OSINT) techniques: cross-referencing public videos, photos and testimonies to establish the chronology and the real layout of the premises."
+          "t": "A 3D model made to speak",
+          "d": "The model of the bar comes from Swiss broadcaster RTS, built from photos and videos of the night and from drawings made by survivors during their police interviews. Here it is split into separate parts, the basement, the stairs, the doors and the terraces, so it can be revealed piece by piece."
         },
         {
-          "t": "Modelling the premises",
-          "d": "The bar and its accesses (room, basement, stairs, doors, terraces) are rebuilt as distinct 3D models, faithful to the configuration on the night of the events."
+          "t": "The story drives the camera",
+          "d": "Nine scrollytelling steps rotate the model and move the camera in Three.js. Each step has its own camera position, its own additional models and its own lighting, in a mobile and a desktop variant."
         },
         {
-          "t": "Real-time 3D rendering",
-          "d": "The models are displayed and lit in the browser with Three.js, which makes it possible to navigate the space and highlight the seat of the fire and the exits."
+          "t": "A tool for framing",
+          "d": "Framing a 3D scene by hand in code quickly becomes unworkable. An editing page therefore places the camera with the mouse, switches between the two formats and exports the values, which become the single source of truth for the story."
         },
         {
-          "t": "Guided narrative",
-          "d": "The scrollytelling links the 3D viewpoints along with the text, matches the model against the real images from the evening and reveals, step by step, why the exits became traps."
+          "t": "OSINT: the music as a clock",
+          "d": "Five witness videos were gathered, none of them timestamped. The track playing in the bar that night acts as a shared clock: aligning each clip on the waveform of the song recovers their exact position relative to one another and reconstructs the timing of the fire from the moment it started. It was all over within a minute."
+        },
+        {
+          "t": "Locating and counting",
+          "d": "A MapLibre map places the bar within the resort and D3 charts give the human toll of the night, drawn from figures published by the Valais cantonal police and the Swiss press."
+        },
+        {
+          "t": "Set against the real footage",
+          "d": "The story alternates the model with real images. It runs through the timeline of the evening, shows the photos taken before and after the renovation work, brings in witness videos and closes with the two parts of the L'Enquête report."
         }
       ],
       "stack": [
         "OSINT",
-        "3D modelling",
+        "3D model (RTS)",
         "Three.js",
+        "MapLibre GL",
         "D3",
-        "SvelteKit"
+        "SvelteKit",
+        "Camera editor"
       ],
-      "credits": "3D model: RTS. Reporting and analysis: Décrypte (RTBF)."
+      "credits": "Story and analysis: Ambroise Carton with Olivia Grisard. 3D model: RTS. Graphics: Damien Hendrichs (Imagique). Sources: Valais cantonal police, 24heures.ch, RTS."
     },
     "thumb": "/images/rtbf-constellation-thumb.jpg",
     "sortDate": "2026-01-16"
@@ -627,17 +882,17 @@
     "caption": "The timeline of posts relayed by Elon Musk brings out the spikes in activity, illustrated by the tweets concerned.",
     "date": "30 April 2025",
     "desc": "How Elon Musk uses his network X to boost the far right in Europe.",
-    "lede": "An analysis of the posts relayed on X by Elon Musk: what the amplification network around his account reveals and the virality mechanics at work in the rise of the European far right.",
+    "lede": "This investigation analyses the posts relayed on X by Elon Musk. It shows what the amplification network around his account reveals and the virality mechanics at work in the rise of the European far right.",
     "role": "Web development, analysis",
     "stack": "SvelteKit · network analysis",
     "data": "Public posts on X (Twitter)",
     "related": "",
     "makingof": {
-      "intro": "An investigation into how Elon Musk uses his network X to amplify the far right in Europe, told as scrollytelling. The challenge: to make visible, post by post, virality mechanics that are hard to grasp with the naked eye.",
+      "intro": "This investigation tells, as scrollytelling, how Elon Musk uses his network X to amplify the far right in Europe. The challenge is to make visible, post by post, virality mechanics that are hard to grasp with the naked eye.",
       "steps": [
         {
           "t": "Building the corpus",
-          "d": "The starting point: five months of Elon Musk's X posts, from the election of Donald Trump. The corpus is gathered then cleaned to allow a chronological, quantified reading."
+          "d": "The corpus gathers five months of Elon Musk's X posts, starting from the election of Donald Trump. It is then cleaned to allow a chronological, quantified reading."
         },
         {
           "t": "AI-assisted classification",
@@ -649,7 +904,7 @@
         },
         {
           "t": "Making the amplification visible",
-          "d": "The narrative alternates between a phone mockup showing the real posts and a data timeline: each spike in activity becomes readable, animated in D3 (with shape morphing via flubber)."
+          "d": "The narrative alternates a phone mockup, which shows the real posts, with a data timeline. Each spike in activity becomes readable, animated in D3 with shape morphing via flubber."
         },
         {
           "t": "Scrollytelling",

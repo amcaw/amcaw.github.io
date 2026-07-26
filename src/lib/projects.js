@@ -1,3 +1,5 @@
+import { version } from '$app/environment';
+
 /** @type {Record<string, Promise<any[]>>} */
 const cache = {};
 
@@ -10,7 +12,7 @@ const cache = {};
  */
 export function loadProjects(lang, fetchFn = fetch) {
   if (!cache[lang]) {
-    cache[lang] = fetchFn(`/projects.${lang}.json`).then((res) => {
+    cache[lang] = fetchFn(`/projects.${lang}.json?v=${version}`, { cache: 'no-cache' }).then((res) => {
       if (!res.ok) throw new Error(`Impossible de charger projects.${lang}.json (${res.status})`);
       return res.json();
     });
