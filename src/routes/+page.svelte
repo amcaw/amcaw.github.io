@@ -50,19 +50,14 @@
 <main>
 
   <section class="hero wrap">
-    <div class="hero__grid">
-      <div class="hero__text">
-        <div class="hero__name">
-          <img class="hero__portrait hero__portrait--inline" src="/images/me.jpg" alt="" width="400" height="400" />
-          {PROFILE.name}
-        </div>
-        <h1 class="hero__title display">
-          {t.heroBefore} <span class="alt">{t.heroAlt}</span> {t.heroAfter}
-        </h1>
-        <p class="hero__lede">{@html t.heroLede}</p>
-      </div>
-      <img class="hero__portrait hero__portrait--aside" src="/images/me.jpg" alt={PROFILE.name} width="400" height="400" />
+    <div class="hero__name">
+      <img class="hero__portrait" src="/images/me.jpg" alt={PROFILE.name} width="400" height="400" />
+      {PROFILE.name}
     </div>
+    <h1 class="hero__title display">
+      {t.heroBefore} <span class="alt">{t.heroAlt}</span> {t.heroAfter}
+    </h1>
+    <p class="hero__lede">{@html t.heroLede}</p>
   </section>
 
 
