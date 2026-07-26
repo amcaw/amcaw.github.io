@@ -55,7 +55,10 @@
       {t.heroBefore} <span class="alt">{t.heroAlt}</span> {t.heroAfter}
     </h1>
 
-    <p class="hero__lede">{@html t.heroLede}</p>
+    <div class="hero__bio">
+      <img class="hero__portrait" src="/images/me.jpg" alt={PROFILE.name} width="400" height="400" />
+      <p class="hero__lede">{@html t.heroLede}</p>
+    </div>
   </section>
 
 
