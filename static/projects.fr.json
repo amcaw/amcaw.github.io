@@ -12,7 +12,7 @@
     "image": "/images/burned-europe.jpg",
     "image2": "/images/burned-europe-2.jpg",
     "thumb": "/images/burned-europe-thumb.jpg",
-    "caption": "À gauche, l'Europe entière sur un mois d'été. À droite, le feu du Porge et de Lacanau en Gironde, avec Bordeaux Métropole tracée à côté pour donner l'échelle.",
+    "caption": "À gauche, l'Europe entière du 1er au 27 juillet 2026. À droite, le même traitement appliqué à la Gironde, où le contour de Bordeaux Métropole donne l'échelle du feu.",
     "date": "29 juillet 2026",
     "sortDate": "2026-07-29",
     "desc": "Un mois de surfaces brûlées en Europe, dessiné point par point sur fond satellite.",
@@ -22,8 +22,12 @@
     "data": "Copernicus EMS / EFFIS · imagerie Esri",
     "related": "",
     "makingof": {
-      "intro": "La carte firefly emprunte son vocabulaire aux images de nuit : un fond sombre, des points qui rayonnent. Appliquée aux surfaces brûlées, elle rend lisible à l'échelle de l'Europe ce qu'un aplat rouge écraserait.",
+      "intro": "La carte firefly emprunte son vocabulaire aux images de nuit : un fond sombre, des points qui rayonnent. Appliquée aux surfaces brûlées de l'été 2026, elle rend lisible à l'échelle de l'Europe ce qu'un aplat rouge écraserait.",
       "steps": [
+        {
+          "t": "Genèse et inspiration",
+          "d": "La technique vient d'un <a href=\"https://medium.com/mapbox/glow-effect-the-firefly-technique-23eff7297075\" target=\"_blank\" rel=\"noreferrer\">article de Jonni Walker pour Mapbox</a>, qui décrit comment obtenir cet effet de luciole en empilant plusieurs halos flous sous un cœur lumineux. Elle est reprise ici pour des surfaces brûlées plutôt que pour des points d'intérêt."
+        },
         {
           "t": "Des polygones aux points",
           "d": "Les périmètres brûlés sont interrogés sur le service européen EFFIS, puis chaque polygone est dispersé en points, un pour six hectares. La densité porte donc la surface, ce qui évite d'avoir à colorer des aplats. Le mois de juillet représente 65 273 points pour 1 662 incendies."
@@ -46,7 +50,7 @@
         },
         {
           "t": "Donner une échelle humaine",
-          "d": "Sur le cadrage girondin, le contour de Bordeaux Métropole est posé à côté de la zone brûlée. Ses 28 communes et 57 706 hectares donnent la mesure : l'incendie du Porge et de Lacanau couvre les deux tiers de l'agglomération."
+          "d": "Sur le cadrage girondin, le contour de Bordeaux Métropole est posé à côté de la zone brûlée. Ses 28 communes et 57 706 hectares donnent la mesure : l'incendie couvre les deux tiers de l'agglomération."
         }
       ],
       "stack": [
@@ -83,7 +87,7 @@
     "data": "Copernicus EFFIS · NASA FIRMS · CAMS",
     "related": "",
     "makingof": {
-      "intro": "La carte répond à une question que l'été ramène chaque année : où brûle-t-il en Europe, et depuis quand ? Trois jeux de données satellitaires y répondent, à condition de les nettoyer, de les alléger et de les rafraîchir sans intervention.",
+      "intro": "En juillet 2026, près de 400 000 hectares ont brûlé en Europe, dont 157 000 pour la seule Espagne. La carte répond à la question que ramène chaque nouvel épisode : où brûle-t-il, et depuis quand ? Trois jeux de données satellitaires y répondent, à condition de les nettoyer, de les alléger et de les rafraîchir sans intervention.",
       "steps": [
         {
           "t": "Trois sources satellitaires",

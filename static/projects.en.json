@@ -12,7 +12,7 @@
     "image": "/images/burned-europe.jpg",
     "image2": "/images/burned-europe-2.jpg",
     "thumb": "/images/burned-europe-thumb.jpg",
-    "caption": "Left, the whole of Europe over one summer month. Right, the Porge and Lacanau fire in the Gironde, with Bordeaux Métropole drawn alongside for scale.",
+    "caption": "Left, the whole of Europe from 1 to 27 July 2026. Right, the same treatment applied to the Gironde, where the outline of Bordeaux Métropole gives the scale of the fire.",
     "date": "29 July 2026",
     "sortDate": "2026-07-29",
     "desc": "A month of burnt land across Europe, drawn point by point over satellite imagery.",
@@ -22,8 +22,12 @@
     "data": "Copernicus EMS / EFFIS · Esri imagery",
     "related": "",
     "makingof": {
-      "intro": "Firefly cartography borrows its vocabulary from night imagery: a dark ground, points that radiate. Applied to burnt land, it makes readable at European scale what a flat red fill would flatten.",
+      "intro": "Firefly cartography borrows its vocabulary from night imagery: a dark ground, points that radiate. Applied to the burnt land of summer 2026, it makes readable at European scale what a flat red fill would flatten.",
       "steps": [
+        {
+          "t": "Origin and inspiration",
+          "d": "The technique comes from <a href=\"https://medium.com/mapbox/glow-effect-the-firefly-technique-23eff7297075\" target=\"_blank\" rel=\"noreferrer\">an article by Jonni Walker for Mapbox</a>, which describes how to obtain this firefly effect by stacking several blurred halos under a bright core. It is applied here to burnt areas rather than to points of interest."
+        },
         {
           "t": "From polygons to points",
           "d": "Burnt perimeters are queried from the European EFFIS service, then each polygon is scattered into points, one for every six hectares. Density therefore carries area, which avoids colouring flat shapes. July alone amounts to 65,273 points for 1,662 fires."
@@ -46,7 +50,7 @@
         },
         {
           "t": "Giving it a human scale",
-          "d": "On the Gironde frame, the outline of Bordeaux Métropole sits next to the burn scar. Its 28 municipalities and 57,706 hectares give the measure: the Porge and Lacanau fire covers two thirds of the metropolitan area."
+          "d": "On the Gironde frame, the outline of Bordeaux Métropole sits next to the burn scar. Its 28 municipalities and 57,706 hectares give the measure: the fire covers two thirds of the metropolitan area."
         }
       ],
       "stack": [
@@ -83,7 +87,7 @@
     "data": "Copernicus EFFIS · NASA FIRMS · CAMS",
     "related": "",
     "makingof": {
-      "intro": "The map answers a question that comes back every summer: where is Europe burning, and since when? Three satellite datasets answer it, provided they are cleaned, made light enough and refreshed without anyone lifting a finger.",
+      "intro": "In July 2026, close to 400,000 hectares burnt across Europe, 157,000 of them in Spain alone. The map answers the question every new episode brings back: where is it burning, and since when? Three satellite datasets answer it, provided they are cleaned, made light enough and refreshed without anyone lifting a finger.",
       "steps": [
         {
           "t": "Three satellite sources",
