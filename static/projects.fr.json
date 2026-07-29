@@ -1,5 +1,127 @@
 [
   {
+    "slug": "burned-europe",
+    "title": "Burned Europe, les feux en cartographie firefly",
+    "type": "Affiche cartographique",
+    "cats": [
+      "Cartes",
+      "Data viz"
+    ],
+    "featured": false,
+    "url": "",
+    "image": "/images/burned-europe.jpg",
+    "image2": "/images/burned-europe-2.jpg",
+    "thumb": "/images/burned-europe-thumb.jpg",
+    "caption": "À gauche, l'Europe entière sur un mois d'été. À droite, le feu du Porge et de Lacanau en Gironde, avec Bordeaux Métropole tracée à côté pour donner l'échelle.",
+    "date": "29 juillet 2026",
+    "sortDate": "2026-07-29",
+    "desc": "Un mois de surfaces brûlées en Europe, dessiné point par point sur fond satellite.",
+    "lede": "Chaque tranche de six hectares brûlés devient un point lumineux sur une image satellite désaturée. La densité des points restitue l'étendue du feu, et leur halo le rend visible à l'échelle d'un continent.",
+    "role": "Concept, data, développement",
+    "stack": "Python · Pillow · EFFIS",
+    "data": "Copernicus EMS / EFFIS · imagerie Esri",
+    "related": "",
+    "makingof": {
+      "intro": "La carte firefly emprunte son vocabulaire aux images de nuit : un fond sombre, des points qui rayonnent. Appliquée aux surfaces brûlées, elle rend lisible à l'échelle de l'Europe ce qu'un aplat rouge écraserait.",
+      "steps": [
+        {
+          "t": "Des polygones aux points",
+          "d": "Les périmètres brûlés sont interrogés sur le service européen EFFIS, puis chaque polygone est dispersé en points, un pour six hectares. La densité porte donc la surface, ce qui évite d'avoir à colorer des aplats. Le mois de juillet représente 65 273 points pour 1 662 incendies."
+        },
+        {
+          "t": "La recette de la lueur",
+          "d": "Les tuiles satellite sont assemblées puis désaturées pour ne garder que le relief. Chaque point est ensuite composé en quatre couches : trois halos flous fusionnés en mode écran, surmontés d'un cœur blanc d'un pixel. C'est ce cœur net sur un halo diffus qui donne l'effet de braise."
+        },
+        {
+          "t": "Empêcher la lueur de saturer",
+          "d": "Au zoom rapproché, les points ne sont plus qu'à 245 mètres les uns des autres et leurs halos se recouvrent au point de virer au blanc plein. Le rayon des cœurs est donc plafonné et l'opacité des halos amortie au-delà d'un certain grossissement."
+        },
+        {
+          "t": "Poser les étiquettes sans les empiler",
+          "d": "Les libellés sont placés de proche en proche contre une liste d'occupation, en essayant douze positions par incendie et huit par ville. Un feu dont l'étiquette ne trouve pas sa place est retiré de la carte plutôt que laissé sous la forme d'un cercle muet."
+        },
+        {
+          "t": "Une légende fidèle à la carte",
+          "d": "Le point de la légende est dessiné avec la même recette en quatre couches et à la même échelle que la carte, si bien que le symbole montré au lecteur est exactement celui qu'il retrouve sur l'image. L'échelle kilométrique choisit la plus grande distance ronde tenant dans un cinquième de la largeur, calculée à la latitude du centre."
+        },
+        {
+          "t": "Donner une échelle humaine",
+          "d": "Sur le cadrage girondin, le contour de Bordeaux Métropole est posé à côté de la zone brûlée. Ses 28 communes et 57 706 hectares donnent la mesure : l'incendie du Porge et de Lacanau couvre les deux tiers de l'agglomération."
+        }
+      ],
+      "stack": [
+        "EFFIS (WFS)",
+        "Python",
+        "Pillow",
+        "GeoJSON",
+        "imagerie Esri"
+      ],
+      "credits": "Sources : Copernicus EMS / EFFIS pour les surfaces brûlées, imagerie Esri / Maxar / Earthstar Geographics, contour de Bordeaux Métropole geo.api.gouv.fr."
+    }
+  },
+  {
+    "slug": "feux-europe",
+    "title": "Les feux de forêt en Europe, jour après jour",
+    "type": "Carte interactive",
+    "cats": [
+      "Cartes",
+      "Data viz",
+      "Interactif"
+    ],
+    "featured": true,
+    "url": "https://amcaw.github.io/svelte-fires/",
+    "image": "/images/feux-europe.jpg",
+    "image2": "/images/feux-europe-2.jpg",
+    "thumb": "/images/feux-europe-thumb.jpg",
+    "caption": "La carte superpose les surfaces brûlées, les foyers actifs du jour et les fumées transportées par le vent. En dessous, le classement des dix plus grands incendies et le bilan par pays.",
+    "date": "29 juillet 2026",
+    "sortDate": "2026-07-29",
+    "desc": "Surfaces brûlées, foyers actifs et fumées en Europe, mis à jour chaque jour.",
+    "lede": "Une carte qui suit la saison des feux en Europe et se met à jour toute seule chaque matin. Elle croise trois sources satellitaires : les périmètres brûlés, les foyers détectés jour par jour et les fumées portées par le vent.",
+    "role": "Concept, data, développement",
+    "stack": "SvelteKit · MapLibre · Python",
+    "data": "Copernicus EFFIS · NASA FIRMS · CAMS",
+    "related": "",
+    "makingof": {
+      "intro": "La carte répond à une question que l'été ramène chaque année : où brûle-t-il en Europe, et depuis quand ? Trois jeux de données satellitaires y répondent, à condition de les nettoyer, de les alléger et de les rafraîchir sans intervention.",
+      "steps": [
+        {
+          "t": "Trois sources satellitaires",
+          "d": "Les périmètres brûlés viennent du programme européen EFFIS, qui les cartographie par satellite. Les foyers actifs proviennent de la NASA, avec les détections VIIRS et MODIS mises à disposition en temps quasi réel. Les fumées sont issues de la prévision européenne CAMS, qui isole la part des particules attribuée aux feux de végétation."
+        },
+        {
+          "t": "Écarter les fausses alertes",
+          "d": "Un satellite thermique ne distingue pas un incendie d'un haut fourneau. Un filtre repère donc les points qui reviennent au même endroit huit jours ou plus sur la période, ainsi que leurs voisins immédiats, et les écarte comme sources industrielles permanentes. Sur le mois de juillet, 488 sites ont ainsi été retirés de la carte."
+        },
+        {
+          "t": "Alléger pour le navigateur",
+          "d": "Les polygones sont simplifiés et leurs coordonnées arrondies, tandis que les grilles de fumées sont compressées par codage des plages de valeurs identiques. Le lecteur charge ainsi un mois de données horaires sans attendre."
+        },
+        {
+          "t": "Une frise à six pas par jour",
+          "d": "La frise avance de quatre heures en quatre heures et affiche, à chaque pas, les foyers détectés dans les douze heures précédentes. Les surfaces brûlées, elles, se cumulent depuis le début de la période, ce qui permet de voir la saison s'installer."
+        },
+        {
+          "t": "Mise à jour automatique",
+          "d": "Chaque matin, une action GitHub relance les scripts Python, récupère les nouvelles données et les enregistre dans le dépôt. Le site n'est redéployé que si quelque chose a changé, ce qui évite les publications à vide."
+        },
+        {
+          "t": "Lecture et intégration",
+          "d": "Un clic sur l'un des dix plus grands incendies zoome sur son périmètre, et le bilan par pays se lit à côté. La carte s'embarque dans les articles via pym.js, dans une iframe qui s'ajuste à la hauteur du contenu."
+        }
+      ],
+      "stack": [
+        "SvelteKit",
+        "MapLibre GL",
+        "Python",
+        "GeoJSON",
+        "GitHub Actions",
+        "pym.js"
+      ],
+      "credits": "Sources : Copernicus EMS / EFFIS, NASA FIRMS, CAMS (Copernicus / Météo-France). Fond de carte CARTO Positron / OpenStreetMap."
+    }
+  },
+  {
     "slug": "tiktok-masculinisme",
     "title": "Sur TikTok, le masculinisme à portée de scroll",
     "type": "Scrollytelling",
@@ -310,7 +432,7 @@
       "Cartes",
       "Interactif"
     ],
-    "featured": true,
+    "featured": false,
     "url": "https://www.rtbf.be/article/guerre-en-ukraine-ou-en-est-la-ligne-de-front-aujourd-hui-carte-interactive-mise-a-jour-au-quotidien-11710636",
     "image": "/images/warmaps-2.jpg",
     "image2": "/images/warmaps.jpg",
