@@ -1,5 +1,127 @@
 [
   {
+    "slug": "burned-europe",
+    "title": "Burned Europe, wildfires as firefly cartography",
+    "type": "Map poster",
+    "cats": [
+      "Cartes",
+      "Data viz"
+    ],
+    "featured": false,
+    "url": "",
+    "image": "/images/burned-europe.jpg",
+    "image2": "/images/burned-europe-2.jpg",
+    "thumb": "/images/burned-europe-thumb.jpg",
+    "caption": "Left, the whole of Europe over one summer month. Right, the Porge and Lacanau fire in the Gironde, with Bordeaux Métropole drawn alongside for scale.",
+    "date": "29 July 2026",
+    "sortDate": "2026-07-29",
+    "desc": "A month of burnt land across Europe, drawn point by point over satellite imagery.",
+    "lede": "Every six hectares burnt becomes one glowing point on desaturated satellite imagery. The density of the points carries the extent of the fire, and their halo makes it visible at the scale of a continent.",
+    "role": "Concept, data, development",
+    "stack": "Python · Pillow · EFFIS",
+    "data": "Copernicus EMS / EFFIS · Esri imagery",
+    "related": "",
+    "makingof": {
+      "intro": "Firefly cartography borrows its vocabulary from night imagery: a dark ground, points that radiate. Applied to burnt land, it makes readable at European scale what a flat red fill would flatten.",
+      "steps": [
+        {
+          "t": "From polygons to points",
+          "d": "Burnt perimeters are queried from the European EFFIS service, then each polygon is scattered into points, one for every six hectares. Density therefore carries area, which avoids colouring flat shapes. July alone amounts to 65,273 points for 1,662 fires."
+        },
+        {
+          "t": "The recipe for the glow",
+          "d": "Satellite tiles are stitched together then desaturated to keep only the relief. Each point is then composed in four layers: three blurred halos screen-blended, topped by a one-pixel white core. That sharp core over a diffuse halo is what produces the ember effect."
+        },
+        {
+          "t": "Keeping the glow from blowing out",
+          "d": "At close zoom the points sit only 245 metres apart and their halos overlap enough to turn solid white. The core radius is therefore capped and the halo opacity damped beyond a given magnification."
+        },
+        {
+          "t": "Placing labels without stacking them",
+          "d": "Labels are placed one after another against an occupancy list, trying twelve positions per fire and eight per city. A fire whose label cannot find room is removed from the map rather than left as a mute ring."
+        },
+        {
+          "t": "A legend true to the map",
+          "d": "The dot in the legend is drawn with the same four-layer recipe and at the same scale as the map, so the symbol shown to the reader is exactly the one found on the image. The distance bar picks the largest round distance fitting within a fifth of the width, computed at the centre latitude."
+        },
+        {
+          "t": "Giving it a human scale",
+          "d": "On the Gironde frame, the outline of Bordeaux Métropole sits next to the burn scar. Its 28 municipalities and 57,706 hectares give the measure: the Porge and Lacanau fire covers two thirds of the metropolitan area."
+        }
+      ],
+      "stack": [
+        "EFFIS (WFS)",
+        "Python",
+        "Pillow",
+        "GeoJSON",
+        "Esri imagery"
+      ],
+      "credits": "Sources: Copernicus EMS / EFFIS for burnt areas, imagery Esri / Maxar / Earthstar Geographics, Bordeaux Métropole boundary from geo.api.gouv.fr."
+    }
+  },
+  {
+    "slug": "feux-europe",
+    "title": "Europe's wildfires, day by day",
+    "type": "Interactive map",
+    "cats": [
+      "Cartes",
+      "Data viz",
+      "Interactif"
+    ],
+    "featured": true,
+    "url": "https://amcaw.github.io/svelte-fires/",
+    "image": "/images/feux-europe.jpg",
+    "image2": "/images/feux-europe-2.jpg",
+    "thumb": "/images/feux-europe-thumb.jpg",
+    "caption": "The map layers burnt areas, the day's active fires and the smoke carried by the wind. Below, the ten largest fires and the toll by country.",
+    "date": "29 July 2026",
+    "sortDate": "2026-07-29",
+    "desc": "Burnt areas, active fires and smoke across Europe, updated every day.",
+    "lede": "A map that follows the European fire season and updates itself every morning. It brings together three satellite sources: burnt perimeters, fires detected day by day, and the smoke carried by the wind.",
+    "role": "Concept, data, development",
+    "stack": "SvelteKit · MapLibre · Python",
+    "data": "Copernicus EFFIS · NASA FIRMS · CAMS",
+    "related": "",
+    "makingof": {
+      "intro": "The map answers a question that comes back every summer: where is Europe burning, and since when? Three satellite datasets answer it, provided they are cleaned, made light enough and refreshed without anyone lifting a finger.",
+      "steps": [
+        {
+          "t": "Three satellite sources",
+          "d": "Burnt perimeters come from the European EFFIS programme, which maps them by satellite. Active fires come from NASA, through the VIIRS and MODIS detections published in near real time. Smoke comes from the European CAMS forecast, which isolates the share of particles attributed to vegetation fires."
+        },
+        {
+          "t": "Filtering out false alarms",
+          "d": "A thermal satellite cannot tell a wildfire from a blast furnace. A filter therefore spots the points that come back to the same place on eight days or more over the period, along with their immediate neighbours, and discards them as permanent industrial sources. Over the month of July, 488 sites were removed from the map that way."
+        },
+        {
+          "t": "Made light for the browser",
+          "d": "Polygons are simplified and their coordinates rounded, while the smoke grids are compressed by encoding runs of identical values. Readers load a month of hourly data without waiting."
+        },
+        {
+          "t": "A timeline with six steps a day",
+          "d": "The timeline moves forward in four-hour steps and shows, at each one, the fires detected over the previous twelve hours. Burnt areas, for their part, accumulate from the start of the period, which makes the season visibly build up."
+        },
+        {
+          "t": "Automatic updates",
+          "d": "Every morning, a GitHub action reruns the Python scripts, fetches the new data and commits it to the repository. The site is redeployed only when something has changed, which avoids empty publications."
+        },
+        {
+          "t": "Reading and embedding",
+          "d": "Clicking one of the ten largest fires zooms to its perimeter, with the toll by country alongside. The map embeds into articles via pym.js, in an iframe that adjusts to the height of its content."
+        }
+      ],
+      "stack": [
+        "SvelteKit",
+        "MapLibre GL",
+        "Python",
+        "GeoJSON",
+        "GitHub Actions",
+        "pym.js"
+      ],
+      "credits": "Sources: Copernicus EMS / EFFIS, NASA FIRMS, CAMS (Copernicus / Météo-France). Basemap CARTO Positron / OpenStreetMap."
+    }
+  },
+  {
     "slug": "tiktok-masculinisme",
     "title": "Masculinism, one scroll away on TikTok",
     "type": "Scrollytelling",
@@ -310,7 +432,7 @@
       "Cartes",
       "Interactif"
     ],
-    "featured": true,
+    "featured": false,
     "url": "https://www.rtbf.be/article/guerre-en-ukraine-ou-en-est-la-ligne-de-front-aujourd-hui-carte-interactive-mise-a-jour-au-quotidien-11710636",
     "image": "/images/warmaps-2.jpg",
     "image2": "/images/warmaps.jpg",
