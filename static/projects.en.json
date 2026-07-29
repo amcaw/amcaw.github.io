@@ -107,7 +107,7 @@
         },
         {
           "t": "Automatic updates",
-          "d": "Every morning, a GitHub action reruns the Python scripts, fetches the new data and commits it to the repository. The site is redeployed only when something has changed, which avoids empty publications."
+          "d": "Every morning, a GitHub Action reruns the Python scripts, fetches the new data and commits it to the repository. The site is redeployed only when something has changed, which avoids empty publications."
         },
         {
           "t": "Reading and embedding",
@@ -234,7 +234,7 @@
         },
         {
           "t": "Automation & deployment",
-          "d": "A GitHub action chains the data update and the redeployment to Cloudflare, so the dashboard refreshes with no intervention. The repository documents the calculation choices behind each chart."
+          "d": "A GitHub Action chains the data update and the redeployment to Cloudflare, so the dashboard refreshes with no intervention. The repository documents the calculation choices behind each chart."
         }
       ],
       "stack": [
@@ -292,7 +292,7 @@
         },
         {
           "t": "Scores, cards and videos",
-          "d": "At the merge point of each match, the score is written along the axis separating the two flags, so each figure lands opposite its own. Clicking a flag opens the match card, with possession, shots, corners, scorers, cards and recent form. A badge plays RTBF's video summary, fetched daily by a GitHub action."
+          "d": "At the merge point of each match, the score is written along the axis separating the two flags, so each figure lands opposite its own. Clicking a flag opens the match card, with possession, shots, corners, scorers, cards and recent form. A badge plays RTBF's video summary, fetched daily by a GitHub Action."
         },
         {
           "t": "Reveal & integration",
@@ -349,7 +349,7 @@
         },
         {
           "t": "Automatic updates",
-          "d": "During the Tour, a scheduled GitHub action reads the official standings from letour.fr several times a day, converts them into compact JSON and redeploys the site. The jerseys, the gaps and the stage winners therefore update on their own."
+          "d": "During the Tour, a scheduled GitHub Action reads the official standings from letour.fr several times a day, converts them into compact JSON and redeploys the site. The jerseys, the gaps and the stage winners therefore update on their own."
         },
         {
           "t": "Two other readings",
