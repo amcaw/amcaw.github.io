@@ -107,7 +107,7 @@
         },
         {
           "t": "Mise à jour automatique",
-          "d": "Chaque matin, une action GitHub relance les scripts Python, récupère les nouvelles données et les enregistre dans le dépôt. Le site n'est redéployé que si quelque chose a changé, ce qui évite les publications à vide."
+          "d": "Chaque matin, une GitHub Action relance les scripts Python, récupère les nouvelles données et les enregistre dans le dépôt. Le site n'est redéployé que si quelque chose a changé, ce qui évite les publications à vide."
         },
         {
           "t": "Lecture et intégration",
@@ -234,7 +234,7 @@
         },
         {
           "t": "Automatisation & déploiement",
-          "d": "Une action GitHub enchaîne la mise à jour des données et le redéploiement sur Cloudflare, si bien que le tableau de bord se rafraîchit sans intervention. Le dépôt documente les choix de calcul de chaque graphique."
+          "d": "Une GitHub Action enchaîne la mise à jour des données et le redéploiement sur Cloudflare, si bien que le tableau de bord se rafraîchit sans intervention. Le dépôt documente les choix de calcul de chaque graphique."
         }
       ],
       "stack": [
@@ -292,7 +292,7 @@
         },
         {
           "t": "Scores, fiches et vidéos",
-          "d": "Au point de fusion de chaque match, le score s'écrit dans l'axe qui sépare les deux drapeaux, pour que chaque chiffre tombe en face du sien. Un clic sur un drapeau ouvre la fiche du match, avec la possession, les tirs, les corners, les buteurs, les cartons et la forme récente. Un badge lance le résumé vidéo de la RTBF, récupéré chaque jour par une action GitHub."
+          "d": "Au point de fusion de chaque match, le score s'écrit dans l'axe qui sépare les deux drapeaux, pour que chaque chiffre tombe en face du sien. Un clic sur un drapeau ouvre la fiche du match, avec la possession, les tirs, les corners, les buteurs, les cartons et la forme récente. Un badge lance le résumé vidéo de la RTBF, récupéré chaque jour par une GitHub Action."
         },
         {
           "t": "Apparition & intégration",
@@ -349,7 +349,7 @@
         },
         {
           "t": "Mise à jour automatique",
-          "d": "Pendant le Tour, une action GitHub programmée relève plusieurs fois par jour les classements officiels sur letour.fr, les convertit en JSON compact et redéploie le site. Les maillots, les écarts et les vainqueurs d'étape se mettent ainsi à jour tout seuls."
+          "d": "Pendant le Tour, une GitHub Action programmée relève plusieurs fois par jour les classements officiels sur letour.fr, les convertit en JSON compact et redéploie le site. Les maillots, les écarts et les vainqueurs d'étape se mettent ainsi à jour tout seuls."
         },
         {
           "t": "Deux autres lectures",
